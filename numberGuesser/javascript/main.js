@@ -25,23 +25,22 @@ $(document).ready (function (){
 	}
 
 	function checkErrors () {
-	
-		// if (playersGuess > 100) { 
-		// 	$(".text").append ("<p style='color:white'>Remember between 1 - 100!</p>")
-		// }
-		// else {
-			checkGuess;
-		//}
-		
+		checkGuess;
 	}
 	
+	function disableButtons() {
+		$("#hint").attr("disabled", "disabled")
+    	$("#submit").attr("disabled", "disabled")
+    	$("input").attr("readonly", true)
+	}
 	
     // Check if the Player's Final Answer
     function checkFinal(){
     	playersGuessSubmission();
     	if (winningNumber === playersGuess) {
     		$(".text").append ("<p style='color:white'>VICTORY!!!!!</p>")
-    		$(".text").append ("<p style='color:white'>"+playersGuess+"</p>")
+    		$(".text").append ("<p style='color:white'>"+playersGuess +" is the winner</p>")
+    		disableButtons();
     	}
     	else if (playersGuess > 100) {
 			$(".text").append ("<p style='color:white'>Remember between 1 - 100!</p>")
@@ -51,15 +50,15 @@ $(document).ready (function (){
 		}
     	else {
     		$(".text").append ("<p style='color:white'>Sorrow and Defeat</p>")
+    		disableButtons();
     	}
-    	$("#hint").attr("disabled", "disabled")
-    	$("#submit").attr("disabled", "disabled")
-    	$("input").attr("readonly", true)
+    	
     }
 	// Check if the Player's Guess is the winning number 
 	function checkGuess() {
 		playersGuessSubmission();
 		if (winningNumber === playersGuess) {
+			$(".thermometer").html (""+playersGuess+"&deg")
 			$(".text").append ("<p style='color:white'>Scorching!!!</p>")
 		}
 		else if (playersGuess > 100) {
@@ -69,6 +68,7 @@ $(document).ready (function (){
 			$(".text").append ("<p style='color:white'>Not a number</p>")
 		}
 		else {
+			$(".thermometer").html (""+playersGuess+"&deg")
 			WarmerOrColder(); 
 		}
 	}
@@ -98,7 +98,7 @@ $(document).ready (function (){
 	function WarmerOrColder() {
 		//if its the first guess just say cold for now
 		if (pastGuesses.length === 0) {
-			$(".text").append ("<p style='color:white'>Cold</p>")
+			$(".text").html ("Cold")
 			pastGuesses.push(playersGuess)
 		}
 		else {
@@ -107,19 +107,19 @@ $(document).ready (function (){
 				currDiff  = Math.abs(winningNumber - playersGuess)
 			if (currDiff > lastDiff) {
 				if (currDiff >= 80){
-					$(".text").append ("<p style='color:white'>BRRRRRRRR</p>")
+					$(".text").html ("BRRRRRRRR")
 				}
 				else {
-					$(".text").append ("<p style='color:white'>Colder</p>")
+					$(".text").html ("Colder")
 				}
 				
 			}
 			else {
 				if (currDiff <= 10){
-					$(".text").append ("<p style='color:white'>HOT</p>")
+					$(".text").html("HOT")
 				}
 				else {
-					$(".text").append ("<p style='color:white'>Warmer</p>")
+					$(".text").html("Warmer")
 				}
 				
 			}
