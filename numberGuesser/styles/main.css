@@ -3,60 +3,11 @@ body {
  font-family: 'Nunito', sans-serif;
  margin: 2%;
 }
-
-.test {
-	/*margin: 0 auto;*/ 
-	background-color: rgb(53,152,213);
+.img-wrapper {
+	border: 1px solid red;
+	height:200px;
 	position: relative;
-	border-radius: 50%;
-	width: 80%;
-	height: auto;
-	padding-top: 80%;
-	margin: 0 auto;
-
 }
-.test2 {
-	position: absolute;
-	top: 40%;
-  	left: 50%;
-  	transform: translate(-50%, -50%);
-	background-color: red; 
-	width:15%;
-	height:150px;
-	border-top-left-radius: 2em;
-	border-top-right-radius: 2em;
-	border:5px solid white;
-}
-
-.test3 {
-	position: absolute;
-	top: 50%;
-  	left: 50%;
-  	transform: translate(-50%, -50%);
-	background-color: red; 
-	width: 20%;
-	height: auto;
-	padding-top: 20%;
-	border-radius: 50%;
-	border:5px solid white;
-}
-.relative-container {
- 	position:relative;
-
-}
-.circle {
-	background-color: rgb(53,152,213);
-	border-radius: 50%;
-	width:80%;
-	height:auto;
-	margin:0 auto;
-	position: absolute;
-	top:0;
-	z-index: -2!important;
-}
-/*THERMOMETER*/
-
-/* Thermometer column and text */
  .thermometer {
     margin:50% 0 0 50%;
     left:-15px;
@@ -106,16 +57,30 @@ body {
     background:#B03633;
 }
 
-/*shapes*/
+/*.circle {
+	background-color: rgb(52,184, 239);
+    border-radius: 50%;
+   	width: 70px;
+    height: 70px;
+    position: absolute;
+    bottom: 5px;
+    left: 43%;
+}
+.rectangle {
+	background-color: rgb(52,184, 239);
+    height: 160px;
+    width: 43px;
+    position: absolute;
+    left: 46%;
 
-.wrapper {
+}
+*//*.wrapper {
 	width:50%; 
 	margin:0 auto;
 	border: 1px solid black;
 /*	position: absolute;*/
-}
 .col {
-	/*border: 1px solid black;*/
+	border: 1px solid black;
 }
 
 /*columns*/
