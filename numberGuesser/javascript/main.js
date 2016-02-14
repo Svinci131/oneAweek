@@ -37,7 +37,9 @@ $(document).ready (function (){
     // Check if the Player's Final Answer
     function checkFinal(){
     	playersGuessSubmission();
+    	var winStatus; 
     	if (winningNumber === playersGuess) {
+    		winStatus = "VICTORY";
     		$(".text").append ("<p style='color:white'>VICTORY!!!!!</p>")
     		$(".text").append ("<p style='color:white'>"+playersGuess +" is the winner</p>")
     		disableButtons();
@@ -49,16 +51,19 @@ $(document).ready (function (){
 			$(".text").append ("<p style='color:white'>Not a number</p>")
 		}
     	else {
+    		winStatus = "Sorrow and Defeat";
     		$(".text").append ("<p style='color:white'>Sorrow and Defeat</p>")
     		disableButtons();
     	}
-    	
+    	return winStatus
     }
 	// Check if the Player's Guess is the winning number 
 	function checkGuess() {
 		playersGuessSubmission();
 		if (winningNumber === playersGuess) {
 			$(".thermometer").html (""+playersGuess+"&deg")
+			$("#therm").removeAttr('class');
+			$("#therm").addClass("thermometer scorching");
 			$(".text").append ("<p style='color:white'>Scorching!!!</p>")
 		}
 		else if (playersGuess > 100) {
@@ -98,28 +103,35 @@ $(document).ready (function (){
 	function WarmerOrColder() {
 		//if its the first guess just say cold for now
 		if (pastGuesses.length === 0) {
-			$(".text").html ("Cold")
+			$(".text").html ("Warm")
 			pastGuesses.push(playersGuess)
 		}
 		else {
 			var lastGuess = pastGuesses[pastGuesses.length-1],
 				lastDiff  = Math.abs(winningNumber - pastGuesses[pastGuesses.length-1]);
 				currDiff  = Math.abs(winningNumber - playersGuess)
+				$("#therm").removeAttr('class');
+				$("#therm").addClass("thermometer");
+
 			if (currDiff > lastDiff) {
 				if (currDiff >= 80){
 					$(".text").html ("BRRRRRRRR")
+					$("#therm").addClass("BRRRRRRRR");
 				}
 				else {
 					$(".text").html ("Colder")
+					$("#therm").addClass("Colder");
 				}
-				
 			}
 			else {
 				if (currDiff <= 10){
 					$(".text").html("HOT")
+					$("#therm").addClass("Hot");
 				}
 				else {
 					$(".text").html("Warmer")
+					$("#therm").addClass("Warmer");
+
 				}
 				
 			}
@@ -130,6 +142,8 @@ $(document).ready (function (){
 	function playAgain(){
 		location.reload()
 	}
+	//Game over/reset
+
 /* **** Event Listeners/Handlers ****  */
 	winningNumber = generateWinningNumber()
 	/* **** starting ****  */
