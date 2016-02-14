@@ -1,0 +1,98 @@
+body {
+	font-size: 40px;
+	font-family: Helvetica, sans-serif;
+}
+.blank {
+
+	padding-right: 5px;
+}
+#blanks {
+	margin-bottom: 5%;
+}
+
+.letter {
+	width:7.5%;
+	margin-bottom: 1%;
+}
+.container {
+	border: 1px solid black;
+	display: flex;
+
+}
+
+.gallows {
+	width:80%;
+	height:150px;
+	margin:0 auto;
+	margin-top:2%;
+	border-left: 1px solid red;
+	position: relative;
+}
+.gallows:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 100px;
+    border-top: 1px solid red;
+}
+
+.head {
+	width: 45px;
+	height:45px;
+	background-color: green; 
+	border-radius: 50%;
+	top:10px;
+	left:77px;
+	position: absolute;
+	visibility: hidden;
+}
+
+.torso { 
+	height:50px;
+	border: 1px solid green;
+	top:50px;
+	left:97px;
+	position: absolute;
+	visibility: hidden;
+}
+.arm.right {
+	left:67px;
+	visibility: hidden;
+}
+
+.leg.right {
+	left:74px;
+	transform: rotate(-60deg);
+	visibility: hidden;
+}
+.arm {
+	width:30px;
+	border: 1px solid green;
+	position: absolute;
+	top:80px;
+	left:97px;
+	visibility: hidden;
+} 
+.leg {
+	width:30px;
+	border: 1px solid green;
+	position: absolute;
+	top:114px;
+	left:90px;
+	transform: rotate(60deg);
+	visibility: hidden;
+}
+/*.arm:nth-of-type(2) {
+	left:67px;
+	height: 20px;
+}*/
+.hang {
+	border: 1px solid black;
+	flex:1;
+}
+.game {
+	border: 1px solid black;
+	flex:2;
+}; 
+
