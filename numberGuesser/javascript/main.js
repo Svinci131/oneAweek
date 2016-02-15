@@ -9,76 +9,6 @@ $(document).ready (function (){
 
 	/* **** Guessing Game Functions **** */
 
-	// Generate the Winning Number
-	function generateWinningNumber(){
-		return Math.ceil(Math.random() * (1,100));
-	}
-
-	// Fetch the Players Guess
-	function playersGuessSubmission(){
-		//if wrong error 
-		playersGuess = parseInt($("input").val());
-		error = false; 
-		$("input").val('')
-		$(".text").empty()	
-	}
-
-	function disableButtons() {
-		$("#hint").attr("disabled", "disabled")
-    	$("#submit").attr("disabled", "disabled")
-    	$("input").attr("readonly", true)
-	}
-	
-    // Check if the Player's Final Answer
-    function checkFinal(){
-    	playersGuessSubmission();
-    	
-    	//check errors
-    	if (playersGuess > 100) {
-			$(".text").append ("<p style='color:white'>Remember between 1 - 100!</p>")
-		}
-		else if (isNaN(playersGuess)) {
-			$(".text").append ("<p style='color:white'>Not a number</p>")
-		}
-
-		else {
-			var winStatus;
-			if (winningNumber === playersGuess) {
-	    		winStatus = "VICTORY";   
-    		}
-    		else {
-    			winStatus = "Sorrow and Defeat";
-    		}
-    		gameOver(winStatus);
-		}
-		
- 
-    }
-	// Check if the Player's Guess is the winning number 
-	function checkGuess() {
-		playersGuessSubmission();
-		console.log(winningNumber)
-		//check win
-		if (winningNumber === playersGuess) {
-			$(".thermometer").html (""+playersGuess+"&deg")
-			$("#therm").removeAttr('class');
-			$("#therm").addClass("thermometer scorching");
-			$(".text").append ("<p style='color:white'>Scorching!!!</p>")
-		}
-		//check errors
-		else if (playersGuess > 100) {
-			$(".text").append ("<p style='color:white'>Remember between 1 - 100!</p>")
-		}
-		else if (isNaN(playersGuess)) {
-			$(".text").append ("<p style='color:white'>Not a number</p>")
-		}
-
-		//check and update
-		else {
-			$(".thermometer").html (""+playersGuess+"&deg")
-			WarmerOrColder(); 
-		}
-	}
 	// Create a provide hint button that provides additional clues to the "Player"
 	function provideHint() {
 		$(".text").empty()
@@ -100,6 +30,67 @@ $(document).ready (function (){
         }
         return direction
     }
+
+
+	// Generate the Winning Number
+	function generateWinningNumber(){
+		return Math.ceil(Math.random() * (1,100));
+	}
+
+	// Fetch the Players Guess
+	function playersGuessSubmission(){
+		playersGuess = parseInt($("input").val());
+		error = false; 
+		$("input").val('')
+		$(".text").empty()	
+	}
+	
+    // Check if the Player's Final Answer
+    function checkFinal(){
+    	playersGuessSubmission();  
+    	//check errors
+    	if (playersGuess > 100) {
+			$(".text").append ("<p style='color:white'>Remember between 1 - 100!</p>")
+		}
+		else if (isNaN(playersGuess)) {
+			$(".text").append ("<p style='color:white'>Not a number</p>")
+		}
+
+		else {
+			var winStatus;
+			if (winningNumber === playersGuess) {
+	    		winStatus = "VICTORY";   
+    		}
+    		else {
+    			winStatus = "Sorrow and Defeat";
+    		}
+    		gameOver(winStatus);
+		}
+    }
+	// Check if the Player's Guess is the winning number 
+	function checkGuess() {
+		playersGuessSubmission();
+		//check win
+		if (winningNumber === playersGuess) {
+			$(".thermometer").html (""+playersGuess+"&deg")
+			$("#therm").removeAttr('class');
+			$("#therm").addClass("thermometer scorching");
+			$(".text").append ("<p style='color:white'>Scorching!!!</p>")
+		}
+		//check errors
+		else if (playersGuess > 100) {
+			$(".text").append ("<p style='color:white'>Remember between 1 - 100!</p>")
+		}
+		else if (isNaN(playersGuess)) {
+			$(".text").append ("<p style='color:white'>Not a number</p>")
+		}
+		//check and update
+		else {
+			$(".thermometer").html (""+playersGuess+"&deg")
+			WarmerOrColder(); 
+		}
+	}
+	
 	// Determine if the current guess is closer than the last guess
 	function WarmerOrColder() {
 		//if its the first guess just say cold for now
@@ -139,14 +130,11 @@ $(document).ready (function (){
 			pastGuesses.push(playersGuess);
 		}	
 	}
-
-
-
 	// Allow the "Player" to Play Again
 	function playAgain(){
 		location.reload()
 	}
-	//Game over/reset
+	//Show GameOver Screen
 	function gameOver (text) {
 		$("#main").css('display', 'none')
 		$(".gameOver-title h1").html(text)
