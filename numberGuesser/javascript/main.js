@@ -20,14 +20,9 @@ $(document).ready (function (){
 		playersGuess = parseInt($("input").val());
 		error = false; 
 		$("input").val('')
-		$(".text").empty()
-		
+		$(".text").empty()	
 	}
 
-	function checkErrors () {
-		checkGuess;
-	}
-	
 	function disableButtons() {
 		$("#hint").attr("disabled", "disabled")
     	$("#submit").attr("disabled", "disabled")
@@ -37,41 +32,48 @@ $(document).ready (function (){
     // Check if the Player's Final Answer
     function checkFinal(){
     	playersGuessSubmission();
-    	var winStatus; 
-    	if (winningNumber === playersGuess) {
-    		winStatus = "VICTORY";
-    		$(".text").append ("<p style='color:white'>VICTORY!!!!!</p>")
-    		$(".text").append ("<p style='color:white'>"+playersGuess +" is the winner</p>")
-    		disableButtons();
-    	}
-    	else if (playersGuess > 100) {
+    	
+    	//check errors
+    	if (playersGuess > 100) {
 			$(".text").append ("<p style='color:white'>Remember between 1 - 100!</p>")
 		}
 		else if (isNaN(playersGuess)) {
 			$(".text").append ("<p style='color:white'>Not a number</p>")
 		}
-    	else {
-    		winStatus = "Sorrow and Defeat";
-    		$(".text").append ("<p style='color:white'>Sorrow and Defeat</p>")
-    		disableButtons();
-    	}
-    	return winStatus
+
+		else {
+			var winStatus;
+			if (winningNumber === playersGuess) {
+	    		winStatus = "VICTORY";   
+    		}
+    		else {
+    			winStatus = "Sorrow and Defeat";
+    		}
+    		gameOver(winStatus);
+		}
+		
+ 
     }
 	// Check if the Player's Guess is the winning number 
 	function checkGuess() {
 		playersGuessSubmission();
+		console.log(winningNumber)
+		//check win
 		if (winningNumber === playersGuess) {
 			$(".thermometer").html (""+playersGuess+"&deg")
 			$("#therm").removeAttr('class');
 			$("#therm").addClass("thermometer scorching");
 			$(".text").append ("<p style='color:white'>Scorching!!!</p>")
 		}
+		//check errors
 		else if (playersGuess > 100) {
 			$(".text").append ("<p style='color:white'>Remember between 1 - 100!</p>")
 		}
 		else if (isNaN(playersGuess)) {
 			$(".text").append ("<p style='color:white'>Not a number</p>")
 		}
+
+		//check and update
 		else {
 			$(".thermometer").html (""+playersGuess+"&deg")
 			WarmerOrColder(); 
@@ -96,7 +98,6 @@ $(document).ready (function (){
         else {
         	direction = "Lower..";
         }
-
         return direction
     }
 	// Determine if the current guess is closer than the last guess
@@ -138,11 +139,19 @@ $(document).ready (function (){
 			pastGuesses.push(playersGuess);
 		}	
 	}
+
+
+
 	// Allow the "Player" to Play Again
 	function playAgain(){
 		location.reload()
 	}
 	//Game over/reset
+	function gameOver (text) {
+		$("#main").css('display', 'none')
+		$(".gameOver-title h1").html(text)
+		$(".gameOver").css('display', 'initial')
+	}
 
 /* **** Event Listeners/Handlers ****  */
 	winningNumber = generateWinningNumber()
@@ -150,13 +159,14 @@ $(document).ready (function (){
 
 	$("#guess").on ("click", function(){
 		checkGuess()
+		console.log(winningNumber)
 	});
 	$("input").on ("keypress", function(e){
 		if (e.which === 13) {
 			checkGuess()
 		}
 	});
-	$("#again").on ("click", function (){
+	$(".again").on ("click", function (){
 		playAgain();
 	});
 	$("#hint").on ("click", function (){
