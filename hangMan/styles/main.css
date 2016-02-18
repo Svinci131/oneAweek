@@ -1,31 +1,23 @@
 body {
 	font-size: 40px;
-	font-family: Helvetica, sans-serif;
-}
-.blank {
-
-	padding-right: 5px;
-}
-#blanks {
-	margin-bottom: 5%;
+	font-family:'Lato Light', sans-serif;
+	background-color: #182930;
+	color:white;
 }
 
-.letter {
-	width:7.5%;
-	margin-bottom: 1%;
+/*little guy*/
+.rope {
+	height: 20px;
+    border-right: 5px solid #182930;
+    position: absolute;
+    left: 95px;
 }
-.container {
-	border: 1px solid black;
-	display: flex;
-
-}
-
 .gallows {
 	width:80%;
 	height:150px;
 	margin:0 auto;
 	margin-top:2%;
-	border-left: 1px solid red;
+	border-left: 5px solid #182930;
 	position: relative;
 }
 .gallows:after {
@@ -34,41 +26,48 @@ body {
     position: absolute;
     top: 0;
     width: 100px;
-    border-top: 1px solid red;
-}
 
+    border-top: 5px solid #182930;
+}
+.guy {
+	border: 1px solid #182930;
+}
 .head {
 	width: 45px;
 	height:45px;
-	background-color: green; 
 	border-radius: 50%;
-	top:10px;
+	top:19px;
 	left:77px;
 	position: absolute;
 	visibility: hidden;
 }
 
 .torso { 
-	height:50px;
-	border: 1px solid green;
-	top:50px;
-	left:97px;
+	height: 35px;
+    top: 65px;
+    left: 97px;
 	position: absolute;
 	visibility: hidden;
 }
-.arm.right {
+.arm-right {
+	width:30px;
+	position: absolute;
+	top:80px;
 	left:67px;
 	visibility: hidden;
 }
 
-.leg.right {
+
+.leg-right {
+	width:30px;
+	position: absolute;
+	top:114px;
 	left:74px;
 	transform: rotate(-60deg);
 	visibility: hidden;
 }
 .arm {
 	width:30px;
-	border: 1px solid green;
 	position: absolute;
 	top:80px;
 	left:97px;
@@ -76,7 +75,6 @@ body {
 } 
 .leg {
 	width:30px;
-	border: 1px solid green;
 	position: absolute;
 	top:114px;
 	left:90px;
@@ -87,12 +85,44 @@ body {
 	left:67px;
 	height: 20px;
 }*/
+/*game play spaces/keyboard*/
+
+.blank {
+	font-size: 28px;
+	font-family: 'Open Sans Light 300 Italic', sans-serif;
+/*	font-weight: Thin;*/
+	padding-right: 15px;
+}
+#blanks {
+	margin-bottom: 5%;
+}
+
+.letter {
+	width:7.5%;
+	margin-bottom: 1%;
+}
+/*positioning/layout*/
+.top {
+/*	background-image: url("../background-01.jpg");
+	background-size: cover;*/
+	background-color: white;
+
+}
+h1 {
+	font-size: 48px;
+	font-family: 'Amatic SC', cursive;
+	margin-bottom: 10%;
+}
+
+.container {
+	display: flex;
+
+}
 .hang {
-	border: 1px solid black;
 	flex:1;
 }
 .game {
-	border: 1px solid black;
-	flex:2;
+	flex:4;
+	padding: 40px;
 }; 
 
