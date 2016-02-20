@@ -79,8 +79,9 @@ function hang () {
 		position = position.substring(0,position.length-2);
 		position = parseInt(position);
 		position+=100
-		$(this).css("top", position)
+		$(this).css("top", position);
 	})
+	$(".rope2").css("visibility", "initial")
 }
 
 ////event based code
