@@ -23,8 +23,3 @@ dict.define("bread", function(error, result){
 	else console.log(error);
 });
 
-// node example.js 5590eec7-58b6-40f8-b912-60c2e61c7f6a "shoes"
-//test words
-// charlatan
-// patutukis
-// doodle
