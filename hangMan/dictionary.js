@@ -49,36 +49,42 @@ Dictionary.prototype = {
 
                 if (result.entry_list.entry != undefined) {
                     var entries = result.entry_list.entry;
+                    
                     for (var i=0; i<entries.length; i++){
 
-                        //remove erroneous results (doodle != Yankee Doodle)
-                        if (entries[i].ew == word) {
+                        if (entries[i].hw[0]._ == word) {
 
                             //construct a more digestable object
-                            console.log("ENTRIES", entries[i].hw, "ENTRIES")
-                            var definition = entries[i].def[0].dt;
+                            var definition = entries[i].def[0].dt[0];
                             var partOfSpeech = entries[i].fl;
-                            switch (typeof definition) {
-                                case "object":
-                                    for (var i=0; i<definition.length; i++){
-                                        var definitionStr = "";
-                                        if (definition[i]["_"].length > 1) definitionStr += " "+definition[i]["_"];
-                                    }
-                                    definition = definitionStr;
-                                    break;
-                                case "string":
-                                default:
-                                    break;
-                            }
+                            // console.log(definition, entries[0])
+                            // switch (typeof definition) {
+                            //     case "object":
+
+                            //         for (var i=0; i<definition.length; i++){
+                            //             var definitionStr = "";
+                            //             if (typeof definition[i]["_"] == "undefined") {
+                            //             	console.log("here", definition, "end")
+                            //             }
+                            //             //if (definition[i]["_"].length > 1) definitionStr += " "+definition[i]["_"];
+                            //         }
+                            //         definition = definitionStr;
+                            //         break;
+                            //     case "string":
+                            //     default:
+                            //         break;
+                            // }//switch
+
 
                             results.push({
                                 partOfSpeech: partOfSpeech,
                                 definition: definition
                             });
-                        }
+                        }//wordmathc
                     }
+                    console.log ( "RESULTS", results)
                     callback(null, results);
-                }
+                }//list defined
                 else if (result.entry_list.suggestion != undefined) {
                     callback('suggestions', result.entry_list.suggestion);
                 }
@@ -92,7 +98,7 @@ Dictionary.prototype = {
     raw: function(word, callback){
         request(this.getSearchUrl(word), function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                console.log(body)
+                // console.log(body)
                 xml.parseString(body, function(error, result){
                     if (error === null) callback(null, result);
                     else if (response.statusCode != 200) console.log("here", response.statusCode);

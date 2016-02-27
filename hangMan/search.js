@@ -1,12 +1,9 @@
-//To run:
-//      $ node example.js [your-merriam-webster-api-key] [word]
-
 var Dictionary = require('./dictionary'),
 	dict = new Dictionary({
 		key: "5590eec7-58b6-40f8-b912-60c2e61c7f6a"
 	});
 
-console.log("HERE", "shoes", "END")
+
 //sample method
 dict.define("bread", function(error, result){
 	if (error == null) {
