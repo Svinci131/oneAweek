@@ -42,7 +42,7 @@ Dictionary.prototype = {
 
     //returns a word's definition
     define: function(word, callback){
-        console.log("WORD", word)
+        // console.log("WORD", word)
         this.raw(word, function(error, result){
             if (error === null) {
                 var results = [];
@@ -53,28 +53,9 @@ Dictionary.prototype = {
                     for (var i=0; i<entries.length; i++){
 
                         if (entries[i].hw[0]._ == word) {
-
                             //construct a more digestable object
                             var definition = entries[i].def[0].dt[0];
                             var partOfSpeech = entries[i].fl;
-                            // console.log(definition, entries[0])
-                            // switch (typeof definition) {
-                            //     case "object":
-
-                            //         for (var i=0; i<definition.length; i++){
-                            //             var definitionStr = "";
-                            //             if (typeof definition[i]["_"] == "undefined") {
-                            //             	console.log("here", definition, "end")
-                            //             }
-                            //             //if (definition[i]["_"].length > 1) definitionStr += " "+definition[i]["_"];
-                            //         }
-                            //         definition = definitionStr;
-                            //         break;
-                            //     case "string":
-                            //     default:
-                            //         break;
-                            // }//switch
-
 
                             results.push({
                                 partOfSpeech: partOfSpeech,
@@ -82,7 +63,7 @@ Dictionary.prototype = {
                             });
                         }//wordmathc
                     }
-                    console.log ( "RESULTS", results)
+                    // console.log ( "RESULTS", results)
                     callback(null, results);
                 }//list defined
                 else if (result.entry_list.suggestion != undefined) {
