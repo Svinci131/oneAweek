@@ -13,27 +13,31 @@ function drawBlanks () {
 module.exports = React.createClass({
   getInitialState: function () {
 		return {
-			keysGuessed:1,
+			keysGuessed:[],
 			letters:letters
 
 		}
   },
   addItem: function( e ) {
-  	console.log(e.target.getAttribute('id'))
+  	var letter = [e.target.getAttribute('id')]; 
+  	var total = letter.concat(this.state.keysGuessed);
+  	console.log(total)
+  	this.setState ({
+  		keysGuessed: total
+  	})
   },
   render: function() {
 
     return (
     <div>
-    <h1>Remaining Guesses: <span>{this.state.keysGuessed}</span></h1>
-    <button onClick={this.addItem}>test</button>
-    <div>
-   	{this.state.letters.map(function(l){
-  		return (<button id={l} onClick={this.addItem}>{l}</button>)
-  	}.bind(this))}
-   </div>
-
-      </div>
+	    <h1>Remaining Guesses: <span>{this.state.keysGuessed.length}</span></h1>
+	    <button onClick={this.addItem}>test</button>
+	    <div>
+	   	{this.state.letters.map(function(l){
+	  		return (<button id={l} onClick={this.addItem}>{l}</button>)
+	  	}.bind(this))}
+	   </div>
+    </div>
     );
   }
 });
