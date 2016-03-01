@@ -6,7 +6,7 @@ var KeyBoard = require('./keyboard')
 var Dashes = require('./dashes')
 var GameOver = require('./gameOver')
 var Model = {
-	word: "bow".split(''),
+	word: "ecquador".split(''),
 	numGuesses: 7,
 	keysGuessed: [],
 	rightGuesses: 0,
@@ -72,11 +72,10 @@ function doRequest() {
 	return new Promise(function(resolve, reject ){
 		gameFunctions.GET( url )
 		.then(function(data){
-			// var words = data.map(function(item){
-			// 	console.log("api", item.word)
-			// });
 			Model.words = data;
-			console.log(Model.words)
+			
+		}).then (function(){
+			console.log("here", Model.words)
 			resolve();
 		});
 	});
