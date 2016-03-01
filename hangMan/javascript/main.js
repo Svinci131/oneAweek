@@ -4,29 +4,31 @@ var Emitter = require('event-emitter');
 var KeyBoard = require('./keyboard')
 var ee = Emitter({});
 
-//model 
-// var Model = {
-// 	//keys guessed 
-// 	keysGuessed: null
-// }
 
-// //KeyBoard 
-
-// ee.on('keyClicked', function () {
-// 	alert ("foo");
-// }
-
-
-
-
-
-
-
-/////
 ReactDOM.render(
-  <KeyBoard />,
+  <KeyBoard data={Model} ee={ee} />,
   document.getElementById('example')
 );
+
+
+
+//model 
+var Model = {
+	//keys guessed 
+	keysGuessed: null
+}
+
+//KeyBoard 
+
+ee.on('keyClicked', function (letter) {
+	alert (letter);
+});
+
+
+
+
+
+
 
 
 
