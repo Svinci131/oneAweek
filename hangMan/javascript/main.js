@@ -17,24 +17,17 @@ ReactDOM.render(
 var Model = {
 	//keys guessed 
 	word: "flowers".split(''),
-	lettersShown: function(){
-		var word = Model.word;
-		var obj = {};
-		for (var i = word.length-1; i >=0 ; i--){
-			obj[word[i]] = false;
-		}
-		return obj
-	},
 	numGuesses: 7,
 	keysGuessed: []
 }
-//Dashes
-//KeyBoard 
-//draw letters if this.props.data.keysGuessed[letter] !== undefined - add attr disabled
-//onClick add to keysGuessed
-//check if its in the word 
-//if it is update dashes 
-//if not decrease number of guesses 
+var wordObj = {}
+
+function updateWordObj (){
+		var word = Model.word;
+		for (var i = word.length-1; i >=0 ; i--){
+			wordObj[word[i]] = false;
+		}
+	}
 
 ee.on('keyClicked', function (letter) {
 	Model.keysGuessed.push(letter)
@@ -44,6 +37,10 @@ ee.on('keyClicked', function (letter) {
 });
 
 
+
+updateWordObj ();
+Model.lettersShown = wordObj;
+console.log (Model.lettersShown)
 render(); 
 
 function render() {
@@ -60,18 +57,23 @@ function render() {
 function check (l) {
 	var word = Model.word;
 	var isRight = false; 
+	l = l.toLowerCase()
 	// console.log(Model.lettersShown()[s])
-  //for (var i = word.length-1; i >=0 ; i--){
-  	// if (word[i] === l) {
-  		//isRight = true; 
-  		//}
-  //}
-  	//if (!isRight) {
-  			//Model.numGuesses -= 1
-  		//} 
-  	// else {
-  		//Model.lettersShown()[l.toLowerCase()] = true;
-  	// }
+	  for (var i = word.length-1; i >=0 ; i--){
+	  	if ( word[i]=== l) {
+	  		isRight = true; 
+	  		}
+	  }
+  	if (!isRight) {
+
+  			Model.numGuesses -= 1
+  		} 
+  	else {
+  		var obj = Model.lettersShown
+  		obj[l] = true;
+  		Model.lettersShown = obj
+  		console.log (Model.lettersShown[l])
+  	}
   	render();
 }
 
