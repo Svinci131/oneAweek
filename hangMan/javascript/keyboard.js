@@ -13,8 +13,6 @@ function drawBlanks () {
 module.exports = React.createClass({
   getInitialState: function () {
 		return {
-			keysGuessed:[],
-			number: 2,
 			letters:letters
 
 		}
@@ -24,11 +22,11 @@ module.exports = React.createClass({
 	this.props.ee.emit('keyClicked', letter);
   },
   render: function() {
-  	console.log(this.props.data.keysGuessed.length)
+  
     return (
     <div>
-	    <h4>Remaining Guesses: <span>{this.props.data.keysGuessed.length}</span></h4>
-	    <button onClick={this.addItem}>test</button>
+	    <h4>Remaining Guesses: <span>{this.props.data.numGuesses}</span></h4>
+	    <button onClick={this.addItem}>testFOO</button>
 	    <div>
 	   	{this.state.letters.map(function(l){
 	  		return (<button id={l} onClick={this.addItem}>{l}</button>)

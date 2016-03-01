@@ -4,46 +4,29 @@ var Emitter = require('event-emitter');
 var ee = Emitter({});
 var KeyBoard = require('./keyboard')
 var Dashes = require('./dashes')
-
-ReactDOM.render(
-  <h1>HangMan</h1>,
-  document.getElementById('title')
-);
-
-
-
-
-//model 
+var GameOver = require('./gameOver')
 var Model = {
-	//keys guessed 
 	word: "flowers".split(''),
 	numGuesses: 7,
-	keysGuessed: []
+	keysGuessed: [],
+	rightGuesses: 0
 }
 var wordObj = {}
+
 
 function updateWordObj (){
 		var word = Model.word;
 		for (var i = word.length-1; i >=0 ; i--){
 			wordObj[word[i]] = false;
 		}
-	}
-
-ee.on('keyClicked', function (letter) {
-	Model.keysGuessed.push(letter)
-	//console.log("foo",Model.keysGuessed)
-	check (letter)
-	
-});
-
-
-
-updateWordObj ();
-Model.lettersShown = wordObj;
-console.log (Model.lettersShown)
-render(); 
+}
 
 function render() {
+	ReactDOM.render(
+	  <h1>HangMan</h1>,
+	  document.getElementById('title')
+	);
+
 	ReactDOM.render(
 	  <KeyBoard data={Model} ee={ee} />,
 	  document.getElementById('keyBoard')
@@ -53,19 +36,23 @@ function render() {
 		document.getElementById('dashes'));
 	//render dashes here to 
 }
+function renderGameOver() { 
+	ReactDOM.render(
+		<GameOver data={Model} />,
+		document.getElementById('gameOver'));
+}
 
 function check (l) {
 	var word = Model.word;
 	var isRight = false; 
 	l = l.toLowerCase()
-	// console.log(Model.lettersShown()[s])
 	  for (var i = word.length-1; i >=0 ; i--){
 	  	if ( word[i]=== l) {
 	  		isRight = true; 
+	  		Model.rightGuesses +=1;
 	  		}
 	  }
   	if (!isRight) {
-
   			Model.numGuesses -= 1
   		} 
   	else {
@@ -74,8 +61,26 @@ function check (l) {
   		Model.lettersShown = obj
   		console.log (Model.lettersShown[l])
   	}
-  	render();
+  	if (Model.numGuesses === 0 || Model.rightGuesses === word.length){
+  		renderGameOver();
+  	}
+  	else {
+  		render();
+  	}
 }
+
+ee.on('keyClicked', function (letter) {
+	Model.keysGuessed.push(letter)
+	check (letter)
+	
+});
+
+
+updateWordObj ();
+Model.lettersShown = wordObj;
+console.log (Model.lettersShown)
+render(); 
+
 
 
 
