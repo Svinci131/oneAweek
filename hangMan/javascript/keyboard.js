@@ -21,15 +21,24 @@ module.exports = React.createClass({
   	var letter = e.target.getAttribute('id'); 
 	this.props.ee.emit('keyClicked', letter);
   },
+  makeAPICall:function () {
+  	this.props.ee.emit('importFromOMDB');
+  },
   render: function() {
-  
+  	var props = this.props.data
     return (
     <div>
 	    <h4>Remaining Guesses: <span>{this.props.data.numGuesses}</span></h4>
-	    <button onClick={this.addItem}>testFOO</button>
+	    <button onClick={this.makeAPICall}>Import</button>
 	    <div>
 	   	{this.state.letters.map(function(l){
-	  		return (<button id={l} onClick={this.addItem}>{l}</button>)
+	   		//rewrite this is bad
+	   		if (props.keysGuessed.indexOf(l) >= 0 ){
+	   			return (<button id={l} disabled onClick={this.addItem}>{l}</button>)
+	   		}
+	   		else {
+	   			return (<button id={l} onClick={this.addItem}>{l}</button>)
+	   		}
 	  	}.bind(this))}
 	   </div>
     </div>
