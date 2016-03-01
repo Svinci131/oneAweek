@@ -21,17 +21,13 @@ module.exports = React.createClass({
   },
   addItem: function( e ) {
   	var letter = e.target.getAttribute('id'); 
-  	// var total = letter.concat(this.state.keysGuessed);
-  	// console.log(total)
-  	// this.setState ({
-  	// 	keysGuessed: total
-  	// })
 	this.props.ee.emit('keyClicked', letter);
   },
   render: function() {
+  	console.log(this.props.data.keysGuessed.length)
     return (
     <div>
-	    <h1>Remaining Guesses: <span>{this.state.number}</span></h1>
+	    <h4>Remaining Guesses: <span>{this.props.data.keysGuessed.length}</span></h4>
 	    <button onClick={this.addItem}>test</button>
 	    <div>
 	   	{this.state.letters.map(function(l){
