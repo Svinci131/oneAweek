@@ -1,32 +1,30 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Emitter = require('event-emitter');
+var KeyBoard = require('./keyboard')
+var ee = Emitter({});
+
+//model 
+// var Model = {
+// 	//keys guessed 
+// 	keysGuessed: null
+// }
+
+// //KeyBoard 
+
+// ee.on('keyClicked', function () {
+// 	alert ("foo");
+// }
 
 
-//var word = require('./search')
 
 
-// var KeyBoard = React.createClass({
-// 	//onclick disable - update 
-// 	render: function() {
 
 
-// 		return( <div>
-//       		hello
-//       	</div>)
-// 	}
-// });
 
-var Game = React.createClass({
-  render: function() {
-    return (
-     <div>hi</div>
-      
-    );
-  }
-});
-
+/////
 ReactDOM.render(
-  <Game />,
+  <KeyBoard />,
   document.getElementById('example')
 );
 
@@ -34,4 +32,3 @@ ReactDOM.render(
 
 
 
-alert("bar")
