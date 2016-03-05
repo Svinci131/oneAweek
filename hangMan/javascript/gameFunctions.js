@@ -47,6 +47,24 @@ module.exports = {
 			xhr.send();
 		});
 	},
+	// Test: function () {
+	// 	return new Promise(function(resolve, reject) {
+	// 		var Dictionary = require('./dictionary');
+	// 			var	dict = new Dictionary({
+	// 				 key: "5590eec7-58b6-40f8-b912-60c2e61c7f6a"
+	// 			});
+
+	// 		dict.define("bread", function(error, result){
+	// 			if (error == null) {
+					
+	// 			}
+
+	// 	}
+	// },
+
+
+
+
 	GETXML: function GETXML( url ) {
 		return new Promise(function(resolve, reject){
 			var xhr = new XMLHttpRequest();
@@ -67,6 +85,16 @@ module.exports = {
 }
 
 
+// function doXMLRequest() {
+// 	var url = "http://www.dictionaryapi.com/api/v1/references/sd2/xml/blue?key=5590eec7-58b6-40f8-b912-60c2e61c7f6a";
+// 	return new Promise(function(resolve, reject ){
+// 		gameFunctions.GETXML( url )
+// 		.then (function(data) {
+// 			console.log(data)
+// 		});
+// 	});
+
+// }
 
 	// renderGameOver: function renderGameOver() { 
 	// 	ReactDOM.render(

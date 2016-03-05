@@ -1,36 +1,10 @@
-// var request = require('superagent');
-// xml2jsParser = require('superagent-xml2jsparser');
-// // npm install mw-dictionary
-// var url = 'http://www.dictionaryapi.com/api/v1/references/sd2/xml/test?key=5590eec7-58b6-40f8-b912-60c2e61c7f6a';
-	
-// //var url = "http://www.omdbapi.com/?t=godfather&y=&plot=short&r=json"
-// request
-// 	.get(url)
-// 	.accept('xml')
-// 	.parse(xml2jsParser)
-// 	.end(function(err, res) {
-// 	if (err || !res.ok) {
-//        console.log('Oh no! error');
-//      } else {
-//     	console.log( res );
-//     }
-// });
-
-// //http://www.multiasking.com/blog/xml2js-sax-js-non-whitespace-before-first-tag/
-
-// // connection, Socket, _readableState, 
-
-// //http://www.dictionaryapi.com/api/v1/references/sd2/xml/food?key=5590eec7-58b6-40f8-b912-60c2e61c7f6a
-
-
-// // 8:46- switch
-
 //  Endpoints
 var MW_ROOT = 'http://www.dictionaryapi.com/api/v1/references/sd2/xml/';
 //http://www.dictionaryapi.com/api/v1/references//xml/test?key=5590eec7-58b6-40f8-b912-60c2e61c7f6a
 //  Dependencies
-var request = require('request'),
-    xml     = require('xml2js');
+var request = require('request');
+var method 
+var xml     = require('xml2js');
   
 //  Dictionary constructor
 var Dictionary = function (config) {  
@@ -100,3 +74,29 @@ Dictionary.prototype = {
 }
 
 module.exports = Dictionary;
+
+
+
+// var request = require('superagent');
+// xml2jsParser = require('superagent-xml2jsparser');
+// // npm install mw-dictionary
+// var url = 'http://www.dictionaryapi.com/api/v1/references/sd2/xml/test?key=5590eec7-58b6-40f8-b912-60c2e61c7f6a';
+    
+// //var url = "http://www.omdbapi.com/?t=godfather&y=&plot=short&r=json"
+// request
+//  .get(url)
+//  .accept('xml')
+//  .parse(xml2jsParser)
+//  .end(function(err, res) {
+//  if (err || !res.ok) {
+//        console.log('Oh no! error');
+//      } else {
+//      console.log( res );
+//     }
+// });
+
+// //http://www.multiasking.com/blog/xml2js-sax-js-non-whitespace-before-first-tag/
+
+// // connection, Socket, _readableState, 
+
+// //http://www.dictionaryapi.com/api/v1/references/sd2/xml/food?key=5590eec7-58b6-40f8-b912-60c2e61c7f6a

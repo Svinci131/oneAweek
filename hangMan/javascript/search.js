@@ -14,7 +14,7 @@ dict.define("bread", function(error, result){
 		}
 	}
 	else if (error === "suggestions"){
-		console.log(process.argv[3] + ' not found in dictionary. Possible suggestions:');
+		//console.log(process.argv[3] + ' not found in dictionary. Possible suggestions:');
 		for (var i=0; i<result.length; i++){
 			console.log(result[i]);
 		}

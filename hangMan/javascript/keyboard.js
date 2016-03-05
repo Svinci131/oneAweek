@@ -29,7 +29,7 @@ module.exports = React.createClass({
   	var props = this.props.data
     return (
     <div>
-	    <h4>Remaining Guesses: <span>{this.props.data.numGuesses}</span></h4>
+	    <h4>Remaining Guesses: <span>{this.props.data.numGuesses}67</span></h4>
 	    <button onClick={this.makeAPICall}>Import</button>
 	    <div>
 	   	{this.state.letters.map(function(l){
