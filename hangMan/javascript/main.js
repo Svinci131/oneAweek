@@ -1,19 +1,23 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Emitter = require('event-emitter');
+// var server = require('./server');
 var ee = Emitter({});
 var KeyBoard = require('./keyboard')
 var Dashes = require('./dashes')
 var GameOver = require('./gameOver')
 var Model = {
-	word: "ecquador".split(''),
+	word: "blotsofletters".split(''),
 	numGuesses: 7,
 	keysGuessed: [],
 	rightGuesses: 0,
 	list:[]
 }
 var gameFunctions = require('./gameFunctions')
-
+// var Dictionary = require('./dictionary'),
+// 	dict = new Dictionary({
+// 		key: "5590eec7-58b6-40f8-b912-60c2e61c7f6a"
+// 	});
 
 function render() {
 	ReactDOM.render(
@@ -37,8 +41,9 @@ function renderGameOver() {
 		document.getElementById('gameOver'));
 }
 
-function updatedClicked (obj, letter){
+function updatedClicked (letter){
 	Model.keysGuessed.push(letter)
+	console.log("here", letter)
 	gameFunctions.check (Model, letter)
 
 	if (Model.numGuesses === 0 || Model.rightGuesses === Model.word.length){
@@ -75,16 +80,26 @@ function doRequest() {
 			Model.words = data;
 			
 		}).then (function(){
-			console.log("here", Model.words)
+			var word = Model.words[0].word
+
+			// search and update 
 			resolve();
 		});
 	});
 }//for each of these words look up definition 
+// function doXMLRequest() {
+// 	var url = "http://www.dictionaryapi.com/api/v1/references/sd2/xml/blue?key=5590eec7-58b6-40f8-b912-60c2e61c7f6a";
+// 	return new Promise(function(resolve, reject ){
+// 		gameFunctions.GETXML( url )
+// 		.then (function(data) {
+// 			console.log(data)
+// 		});
+// 	});
 
+// }
 
-ee.on('importFromOMDB', renderFactory( doRequest ) );
-ee.on('keyClicked', renderFactory(updatedClicked));
-	
+// ee.on('importFromOMDB', renderFactory(doRequest));
+
 
 
 var wordObj = gameFunctions.updateWordObj (Model);
@@ -92,5 +107,18 @@ Model.lettersShown = wordObj;
 render(); 
 
 
+ee.on('keyClicked', renderFactory(updatedClicked))
 
+// ee.on('keyClicked', function (letter) {
+// 	Model.keysGuessed.push(letter)
+// 	console.log("here", letter)
+// 	gameFunctions.check (Model, letter)
+
+// 	if (Model.numGuesses === 0 || Model.rightGuesses === Model.word.length){
+// 	  	renderGameOver();
+// 	}
+// 	else {
+// 		render();
+// 	}
+// });
 

@@ -39,7 +39,6 @@ var Dictionary = function (config) {
 
 //  Dictionary functions
 Dictionary.prototype = {
-
     //returns a word's definition
     define: function(word, callback){
         // console.log("WORD", word)

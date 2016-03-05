@@ -31,23 +31,42 @@ module.exports = {
 	  	
 	},
 	GET:  function GET( url ) {
-	return new Promise(function(resolve, reject){
-		var xhr = new XMLHttpRequest();
+		return new Promise(function(resolve, reject){
+			var xhr = new XMLHttpRequest();
 
-		xhr.addEventListener('load', function(e){
-			var data = JSON.parse( e.currentTarget.response );
+			xhr.addEventListener('load', function(e){
+				var data = JSON.parse( e.currentTarget.response );
+				resolve( data );
+			});
 
-			resolve( data );
+			xhr.addEventListener('fail', function(e){
+				reject( e );
+			})
+
+			xhr.open('GET', url);
+			xhr.send();
 		});
+	},
+	GETXML: function GETXML( url ) {
+		return new Promise(function(resolve, reject){
+			var xhr = new XMLHttpRequest();
 
-		xhr.addEventListener('fail', function(e){
-			reject( e );
-		})
+			xhr.addEventListener('load', function(e){ 
+				console.log(e.currentTarget.response)
+				resolve(e.currentTarget.response)
+			})
+			
+			xhr.addEventListener('fail', function(e){
+				reject( e );
+			})
 
-		xhr.open('GET', url);
-		xhr.send();
-	});
+			xhr.open('GET', url);
+			xhr.send();
+		});
+	}
 }
+
+
 
 	// renderGameOver: function renderGameOver() { 
 	// 	ReactDOM.render(
@@ -56,5 +75,3 @@ module.exports = {
 	// 	}
 	// }
 
-
-}
