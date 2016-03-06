@@ -114,47 +114,47 @@ ee.on('importFromOMDB', function () {
 	});
 
 //sample method
-dict.define("bread", function(error, result){
-	if (error == null) {
-		for(var i=0; i<result.length; i++){
-			console.log("What",result);
-			console.log('Part of speech: '+result[i].partOfSpeech);
-			console.log('Definitions: '+result[i].definition);
-			console.log(result[i].definition)
-		}
-	}
-	else if (error === "suggestions"){
-		//console.log(process.argv[3] + ' not found in dictionary. Possible suggestions:');
-		for (var i=0; i<result.length; i++){
-			console.log(result[i]);
-		}
-	}
-	else console.log(error);
-});
+// dict.define("bread", function(error, result){
+// 	if (error == null) {
+// 		for(var i=0; i<result.length; i++){
+// 			console.log("What",result);
+// 			console.log('Part of speech: '+result[i].partOfSpeech);
+// 			console.log('Definitions: '+result[i].definition);
+// 			console.log(result[i].definition)
+// 		}
+// 	}
+// 	else if (error === "suggestions"){
+// 		//console.log(process.argv[3] + ' not found in dictionary. Possible suggestions:');
+// 		for (var i=0; i<result.length; i++){
+// 			console.log(result[i]);
+// 		}
+// 	}
+// 	else console.log(error);
+// });
 
 
-	//var url = "http://api.wordnik.com:80/v4/words.json/randomWords?hasDictionaryDef=true&includePartOfSpeech=noun&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&limit=10&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
+// 	var url = "http://api.wordnik.com:80/v4/words.json/randomWords?hasDictionaryDef=true&includePartOfSpeech=noun&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&limit=10&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
 	
-	// fetch(url, {mode: 'no-cors'})  
-	//   .then(  
-	//     function(response) {  
-	//       if (response.status !== 200) {  
-	//         console.log('Looks like there was a problem. Status Code: ' +  
-	//           response.status);  
-	//         return;  
-	//       }
+// 	fetch(url, {mode: 'no-cors'})  
+// 	  .then(  
+// 	    function(response) {  
+// 	      if (response.status !== 200) {  
+// 	        console.log('Looks like there was a problem. Status Code: ' +  
+// 	          response);  
+// 	        return;  
+// 	      }
 
-	//       // Examine the text in the response  
-	//       response.json().then(function(data) {  
-	//         console.log(data);  
-	//       });  
-	//     }  
-	//   )  
-	//   .catch(function(err) {  
-	//     console.log('Fetch Error :-S', err);  
-	//   });
+// 	      // Examine the text in the response  
+// 	      response.json().then(function(data) {  
+// 	        console.log(data);  
+// 	      });  
+// 	    }  
+// 	  )  
+// 	  .catch(function(err) {  
+// 	    console.log('Fetch Error :-S', err);  
+// 	  });
 
-});
+// });
 
 // // 	var Dictionary = require('./dictionary'),
 // // 	dict = new Dictionary({
@@ -179,4 +179,11 @@ dict.define("bread", function(error, result){
 // // });
 
 
-// });
+});
+
+var xhr = new XMLHttpRequest();
+xhr.addEventListener('load', function(data){
+	console.log(data);
+})
+xhr.open('GET', 'dictionary/bread');
+xhr.send();
