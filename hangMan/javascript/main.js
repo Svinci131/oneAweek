@@ -5,8 +5,7 @@ var ee = Emitter({});
 var KeyBoard = require('./keyboard')
 var Dashes = require('./dashes')
 var GameOver = require('./gameOver')
-var wordUrl = "http://api.wordnik.com:80/v4/words.json/randomWords?hasDictionaryDef=true&includePartOfSpeech=noun&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&limit=10&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"	
-
+var wordURL = "http://api.wordnik.com:80/v4/words.json/randomWords?hasDictionaryDef=true&includePartOfSpeech=noun&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&limit=10&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"	
 var Model = {
 	word: "blotsofletters".split(''),
 	numGuesses: 7,
@@ -15,16 +14,17 @@ var Model = {
 	list:[]
 }
 var gameFunctions = require('./gameFunctions')
-
+var apiFunctions = require('./apiFunctions')
 ///render pages 
 function render() {
+	console.log(Model.words)
 	ReactDOM.render(
 	  <h1>HangMan</h1>,
 	  document.getElementById('title')
 	);
 
 	ReactDOM.render(
-	  <KeyBoard data={Model} ee={ee} />,
+	  <KeyBoard data={Model} url={wordURL} ee={ee} />,
 	  document.getElementById('keyBoard')
 	);
 	ReactDOM.render(
@@ -68,32 +68,44 @@ function updatedClicked (letter){
 		render();
 	}
 }
-function doRequest(url) {
+function doRequest(url, cb) {
 	return new Promise(function(resolve, reject ){
 		gameFunctions.GET( url )
 		.then(function(data){
-			Model.words = data;
+			cb(Model, data)
+			// Model.words = data;
+			// console.log(data.entry)
 			
 		}).then (function(){
-			var word = Model.words[0].word
-
+			// var word = Model.words[0].word
+			// console.log("here", Model.words)
+			// render(); 
 			// search and update 
 			resolve();
 		});
 	});
 }
+
 ///ee events
+
+
 //set up game
 var wordObj = gameFunctions.updateWordObj (Model);
 Model.lettersShown = wordObj;
+doRequest(wordURL, apiFunctions.setWords);
+doRequest('dictionary/bread', apiFunctions.getDefinition);
 render(); 
 
-ee.on('keyClicked', renderFactory(updatedClicked))
-// ee.on('keyClicked', renderFactory(updatedClicked))
 
-var xhr = new XMLHttpRequest();
-xhr.addEventListener('load', function(data){
-	console.log("here", data.currentTarget.response);
-})
-xhr.open('GET', 'dictionary/bread');
-xhr.send();
+//before
+//getDefinition
+//renderGameOver - data - definition 
+ee.on('keyClicked', renderFactory(updatedClicked))
+
+///get definition
+// var xhr = new XMLHttpRequest();
+// xhr.addEventListener('load', function(data){
+// 	// console.log("here", data.currentTarget.response);
+// })
+// xhr.open('GET', 'dictionary/bread');
+// xhr.send();

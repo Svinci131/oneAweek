@@ -23,13 +23,15 @@ module.exports = React.createClass({
 	this.props.ee.emit('keyClicked', letter);
   },
   makeAPICall:function () {
-  	this.props.ee.emit('importFromOMDB');
+  	var url = this.props.url
+  	// console.log("here", url)
+  	this.props.ee.emit('importFromOMDB', url);
   },
   render: function() {
   	var props = this.props.data
     return (
     <div>
-	    <h4>Remaining Guesses: <span>{this.props.data.numGuesses}67</span></h4>
+	    <h4>Remaining Guesses: <span>{this.props.data.numGuesses}</span></h4>
 	    <button onClick={this.makeAPICall}>Import</button>
 	    <div>
 	   	{this.state.letters.map(function(l){
