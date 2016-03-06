@@ -19,7 +19,7 @@ module.exports = React.createClass({
   },
   addItem: function( e ) {
   	var letter = e.target.getAttribute('id'); 
-  	console.log(letter)
+  	// console.log(letter)
 	this.props.ee.emit('keyClicked', letter);
   },
   makeAPICall:function () {

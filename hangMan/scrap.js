@@ -7,3 +7,11 @@
 // }
 //app.get (options, )
 // app.use ()
+
+///get definition
+// var xhr = new XMLHttpRequest();
+// xhr.addEventListener('load', function(data){
+// 	// console.log("here", data.currentTarget.response);
+// })
+// xhr.open('GET', 'dictionary/bread');
+// xhr.send();
