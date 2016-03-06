@@ -38,6 +38,15 @@ function doRequest(url, cb) {
 		});
 	});
 }
+function getandSet () {
+	return new Promise(function(resolve, reject ){
+		doRequest(wordURL, apiFunctions.setWords)
+		.then(function (){
+			doRequest('dictionary/'+word, apiFunctions.getDefinition);
+			resolve();
+		});
+	});
+}
 
 ///game events that couldn't be broken out
 function updatedClicked (letter){
@@ -57,9 +66,10 @@ function updatedClicked (letter){
 //set up game
 var wordObj = gameFunctions.updateWordObj (Model);
 Model.lettersShown = wordObj;
-doRequest(wordURL, apiFunctions.setWords);
+// doRequest(wordURL, apiFunctions.setWords);
 var word = "shoes"
-doRequest('dictionary/'+word, apiFunctions.getDefinition);
+getandSet ()
+// doRequest('dictionary/'+word, apiFunctions.getDefinition);
 render.render(Model, ee); 
 
 
