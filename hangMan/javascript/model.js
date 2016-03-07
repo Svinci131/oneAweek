@@ -3,5 +3,5 @@ module.exports = {
 	numGuesses: 7,
 	keysGuessed: [],
 	rightGuesses: 0,
-	list:[]
+	list:{}
 }

@@ -15,3 +15,5 @@
 // })
 // xhr.open('GET', 'dictionary/bread');
 // xhr.send();
+
+//http://developer.wordnik.com/docs.html#!/words/getRandomWords_get_3
