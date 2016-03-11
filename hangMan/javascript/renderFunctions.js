@@ -4,27 +4,32 @@ var KeyBoard = require('./keyboard')
 var Dashes = require('./dashes')
 var GameOver = require('./gameOver')
 
+
+
 module.exports = {
 
-	render: function render() {
+	render: function render(obj, ee) {
 		ReactDOM.render(
 		  <h1>HangMan</h1>,
 		  document.getElementById('title')
 		);
 
 		ReactDOM.render(
-		  <KeyBoard data={Model} ee={ee} />,
+		  <KeyBoard data={obj} ee={ee} />,
 		  document.getElementById('keyBoard')
 		);
 		ReactDOM.render(
-			<Dashes data={Model} />,
+
+			<Dashes data={obj} />,
 			document.getElementById('dashes'));
 		//render dashes here to 
 	}, 
 
-	renderGameOver: function renderGameOver() { 
+	renderGameOver: function renderGameOver(obj) { 
 		ReactDOM.render(
-			<GameOver data={Model} />,
+			<GameOver data={obj} />,
 			document.getElementById('gameOver'));
-		}
+	}
+
+
 }
