@@ -20,7 +20,7 @@ var searchURL = {
 		api_key: key
 	}
 }
-
+//call search api
 function makeSearchCall(searchQuery) {
   var _localArgs = {
      url: searchURL.url_base,
@@ -57,6 +57,7 @@ function getWords () {
 }
 //check definition, set variables, set up board
 function setUpGame ( data ){
+	$("#playAgain").css("visibility","hidden")
 	//check to make if the word has a valid definition, if not search again
 	if (words[0].definition.total === 0){
 		getWords ()
@@ -80,7 +81,6 @@ function setUpGame ( data ){
 
 	}
 }
-
 //make place holders for letters
 function drawBlanks () {
 	$("#blanks").empty();
@@ -110,14 +110,11 @@ function updateGuesses () {
 	if (numSpaces === 0) {
 		free()
 		gameOver()
-
-		// getWords ()
 	}
 	else {
 		$("#remainingGuesses").html(""+numGuesses);
 	}
 }
-
 //drop the little guy
 function hang () {
 	$(".guy").each (function (){
@@ -132,7 +129,7 @@ function hang () {
 	})
 	$(".rope2").css("visibility", "initial")
 }
-//drop the little guy
+//make the little guy say You saved me 
 function free () {
 	$(".gallows").children().each(function(i, el){
 		$(el).css("visibility","initial")
@@ -157,13 +154,13 @@ function gameOver() {
 		$(".keys").prepend("<p class='definition'>"+words[0].definition.results[key].text+"<br><em class>"+words[0].definition.results[key].partOfSpeech+"</em><br>   -"+words[0].definition.results[key].attributionText+"</p>")
 	}
 }
-
 ////event based code
 drawButtons ();
 getWords ();
 
-$(".keys button").click (function (){
+$(".keys button").on ("click", function (){
 	var buttonletter = $(this).html();
+	console.log("here", buttonletter, hiddenWord)
 	var isRight = false; 
 	for (var i = 0; i<hiddenWord.length; i++){
 		if (hiddenWord[i].toLowerCase() === buttonletter.toLowerCase()) {
@@ -173,7 +170,6 @@ $(".keys button").click (function (){
 		}
 	}
 	if (!isRight){
-		//take away a guess 
 		numGuesses --
 		$("."+guy[numGuesses]).css("visibility","initial")
 	}
@@ -182,6 +178,11 @@ $(".keys button").click (function (){
 });
 
 $("#playAgain").on("click", function() {
-	drawButtons ();
-	getWords ();
-})
+	// $(".gallows").children().each(function(i, el){
+	// 	$(el).css("visibility","hidden")
+	// });
+	// $(".rope").css("visibility","initial")
+	// drawButtons ();
+	// getWords ();
+	location.reload();
+});
