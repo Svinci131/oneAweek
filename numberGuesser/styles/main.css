@@ -51,8 +51,8 @@ body {
 /*therm text*/
 .text {
 	position: absolute;
-    top: 111px;
-    left: 199px;
+    top: 141px;
+    left: 249px;
     color: white;
 }
 .Colder {
@@ -218,6 +218,10 @@ button:first-child {
     .header {
     	width: 95%
     }
+    .text {
+    	top: 118px;
+    	left: 229px;
+    }
     .header h1  {
     	font-size: 53px;
     	line-height: initial;
@@ -233,6 +237,10 @@ button:first-child {
     	width: 335px;
     	padding-bottom: 326px;
     }
+    .text {
+	    top: 118px;
+	    left: 207px;
+	}
     .thermometer {
     	left: 137px;
     	top: 22px;
@@ -242,8 +250,19 @@ button:first-child {
 	.circle {
 		visibility: hidden; 
 	}
+	.text {
+	    top: 118px;
+	   /* left: 164px;*/
+	    left: 106px;
+
+	}
+	.input-item {
+	    flex: 2;
+	    border-top-right-radius: 3!important;
+	    border-bottom-right-radius: 3!important;
+	}
 	.thermometer {
-    	left: 93px;
+    	left: 35px;
 	}
 	.input-item {
    	  padding: 10px 6px;
@@ -251,7 +270,7 @@ button:first-child {
 }
 @media (max-width: 404px) {
 	.thermometer {
-    	left: 68px;
+    	left: 35px;
 	}
 	
 	.col-wrapper {
