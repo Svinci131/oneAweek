@@ -11,7 +11,6 @@ module.exports = React.createClass({
 	},
 	addItem: function(e) {
 		var letter = e.target.getAttribute('id'); 
-		// passing these args to my event emitter
 		this.props.ee.emit('keyClicked', letter);
 	},
 	keys:function () {
@@ -25,7 +24,6 @@ module.exports = React.createClass({
 				else {
 					return (<button id={l} disabled>{l}</button>)
 				}
-				
 			}.bind(this));
 		console.log(buttons)
 		return(buttons)

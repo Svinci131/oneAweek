@@ -2,6 +2,8 @@ var React = require('react');
 
 module.exports = React.createClass({
 	render: function () {
-		return (<div>HELLO!!!</div>)
+		return (<div>
+			<p>Remaining Guesses: <span>{this.props.data.numGuesses}</span></p>
+			</div>)
 	}
 });

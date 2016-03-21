@@ -15,27 +15,14 @@ var model = {
 }
 //functions
 var gameFunctions= require('./gameFunctions');
+var render = require('./renderFunctions')
 var xhr = new XMLHttpRequest();
 
 
 //pass ee in to my component
-function render () {
-	console.log("here", model)
-	ReactDOM.render(
-	<KeyBoard data={model} ee={ee} />,
-	document.getElementById('keyBoard')
-	);
-	ReactDOM.render(
-		<Dashes data={model} ee={ee}/>,
-		document.getElementById('dashes')
-	);
-	ReactDOM.render(
-		<HangMan data={model} />,
-		document.getElementById('hangMan')
-	);
-}
 
-render ()
+
+render.render (model, ee)
 
 ee.on('buttonClick', function (word) {
 	console.log (word)
@@ -48,7 +35,7 @@ ee.on('keyClicked', function (letter) {
 	  	// render.renderGameOver(model);
 	}
 	else {
-		render()
+		render.render (model, ee)
 	}
 });
 
