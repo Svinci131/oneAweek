@@ -1,6 +1,5 @@
 module.exports = {
 	check: function check (obj, l) {
-
 		var word = obj.word;
 		var isRight = false; 
 		l = l.toLowerCase()
