@@ -10,15 +10,17 @@ var HangMan = require('./hangMan')
 var model = {
 	word: "TEST",
 	numGuesses: 7,
-	keysGuessed: [],
+	keysGuessed: {},
 	rightGuesses: 0
 }
+//functions
+var gameFunctions= require('./gameFunctions');
 var xhr = new XMLHttpRequest();
 
 
 //pass ee in to my component
 function render () {
-	console.log("foo")
+	console.log("here", model)
 	ReactDOM.render(
 	<KeyBoard data={model} ee={ee} />,
 	document.getElementById('keyBoard')
@@ -39,9 +41,15 @@ ee.on('buttonClick', function (word) {
 	console.log (word)
 });
 
-ee.on('keyClicked', function (l) {
-	model.keysGuessed.push(l)
-	render()
+ee.on('keyClicked', function (letter) {
+	gameFunctions.check (model, letter)
+
+	if (model.numGuesses === 0 || model.rightGuesses === model.word.length){
+	  	// render.renderGameOver(model);
+	}
+	else {
+		render()
+	}
 });
 
 

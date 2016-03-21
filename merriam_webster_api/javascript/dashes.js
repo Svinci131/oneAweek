@@ -2,11 +2,19 @@ var React = require('react');
 
 module.exports = React.createClass({
 	dashes:function () {
-		console.log(this.props.data.word)
+		var isGuessed = this.props.data.keysGuessed;
+		
 		var arr = this.props.data.word.split("")
 		var spaces = arr.map(function(l){ 
-				return (<span className="blank" id={l}>_</span>)
-			}.bind(this));
+				l = l.toLowerCase()
+				
+				if (!isGuessed[l]) {
+					return (<span className="blank" >_</span>)
+				}
+				else {
+					return (<span className="blank" >{l}</span>)
+				}
+			});
 		return (spaces)
 	},
 	render:function(){
@@ -17,8 +25,6 @@ module.exports = React.createClass({
 			</div>)
 	}
 });
-
-
 	// render:function(){
 	// 	// console.log("test")
 	// 	var word = this.props.data.word;
