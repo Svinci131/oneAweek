@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var KeyBoard = require('./keyboard')
 var Dashes = require('./dashes')
 var HangMan = require('./hangMan')
+var GameOver = require('./gameOver')
 
 module.exports = {
 	render: function render(obj, ee) {
@@ -17,6 +18,12 @@ module.exports = {
 		ReactDOM.render(
 			<HangMan data={obj} />,
 			document.getElementById('hangMan')
+		);
+	},
+	renderGameOver: function (obj, ee) {
+		ReactDOM.render(
+			<GameOver data={obj} ee={ee} />,
+			document.getElementById('gameOver')
 		);
 	}
 }

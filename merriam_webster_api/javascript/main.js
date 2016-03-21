@@ -8,7 +8,7 @@ var KeyBoard = require('./keyBoard');
 var Dashes = require('./dashes');
 var HangMan = require('./hangMan')
 var model = {
-	word: "TEST",
+	word: "test",
 	numGuesses: 7,
 	keysGuessed: {},
 	rightGuesses: 0
@@ -19,20 +19,20 @@ var render = require('./renderFunctions')
 var xhr = new XMLHttpRequest();
 
 
-//pass ee in to my component
 
 
+//START
 render.render (model, ee)
-
+//TEST EE LISTENER
 ee.on('buttonClick', function (word) {
 	console.log (word)
 });
 
 ee.on('keyClicked', function (letter) {
 	gameFunctions.check (model, letter)
-
 	if (model.numGuesses === 0 || model.rightGuesses === model.word.length){
-	  	// render.renderGameOver(model);
+		console.log("OVER")
+	  	render.renderGameOver(model, ee);
 	}
 	else {
 		render.render (model, ee)
