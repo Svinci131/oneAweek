@@ -15,10 +15,17 @@ module.exports = React.createClass({
 		this.props.ee.emit('keyClicked', letter);
 	},
 	keys:function () {
+		var isGuessed = this.props.data.keysGuessed;
 		var arr = this.letters()
 		var buttons = arr.map(function(l){ 
-			// calling my function on click
-				return (<button id={l} onClick={this.addItem}>{l}</button>)
+				l = l.toLowerCase()
+				if (typeof isGuessed[l] === "undefined") {
+					return (<button id={l} onClick={this.addItem}>{l}</button>)
+				}
+				else {
+					return (<button id={l} disabled>{l}</button>)
+				}
+				
 			}.bind(this));
 		console.log(buttons)
 		return(buttons)
