@@ -1,7 +1,56 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var ee = require('event-emitter');
+//require event emitter
+var Emitter = require('event-emitter');
+//create new ee object
+var ee = Emitter({});
+var KeyBoard = require('./keyBoard');
+var Dashes = require('./dashes');
+var HangMan = require('./hangMan')
+var model = {
+	word: "TEST",
+	numGuesses: 7,
+	keysGuessed: [],
+	rightGuesses: 0
+}
 var xhr = new XMLHttpRequest();
+
+
+//pass ee in to my component
+function render () {
+	console.log("foo")
+	ReactDOM.render(
+	<KeyBoard data={model} ee={ee} />,
+	document.getElementById('keyBoard')
+	);
+	ReactDOM.render(
+		<Dashes data={model} ee={ee}/>,
+		document.getElementById('dashes')
+	);
+	ReactDOM.render(
+		<HangMan data={model} />,
+		document.getElementById('hangMan')
+	);
+}
+
+render ()
+
+ee.on('buttonClick', function (word) {
+	console.log (word)
+});
+
+ee.on('keyClicked', function (l) {
+	model.keysGuessed.push(l)
+	render()
+});
+
+
+
+
+
+
+
+
 
 //make api call- generic functions
 function GET (url) {
@@ -28,8 +77,5 @@ function doRequest (url) {
 }
 // dictionary/bread
 
-ReactDOM.render(
-	<h1>HangMan</h1>,
-	document.getElementById('title')
-);
+
 

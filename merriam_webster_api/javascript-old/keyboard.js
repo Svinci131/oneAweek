@@ -14,7 +14,6 @@ module.exports = React.createClass({
   getInitialState: function () {
 		return {
 			letters:letters
-
 		}
   },
   addItem: function( e ) {
