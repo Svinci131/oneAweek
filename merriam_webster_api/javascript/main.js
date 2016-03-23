@@ -44,26 +44,26 @@ render.renderHome (model, ee)
 //and pass in my new function as an argument
 ee.on('keyClicked', renderFactory( update))
 
-
+//this is ok for the first api call
 ee.on('buttonClick', function (url) {
+	//make call 
 	function get (url) {
 		return new Promise (function (resolve, reject){
 			var xhr = new XMLHttpRequest();
 				xhr.addEventListener('load', function(data){
-
-					// model.word = data.currentTarget.response
-					// console.log("here", model.word);
-					// render.render (model, ee)
 					resolve(data.currentTarget.response)
 				});
 				xhr.open('GET', url);
 				xhr.send();
 		});
 	}
+	//then do stuff when data is back
 	get(url)
 	.then(function(data){
-			console.log("Data",data)
-		});
+		model.word = data;
+	}).then (function(){
+		console.log(model.word)
+	});
 
 });
 
