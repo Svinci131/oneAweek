@@ -11,7 +11,8 @@ module.exports = React.createClass({
 	},
 	addItem: function(e) {
 		var letter = e.target.getAttribute('id'); 
-		this.props.ee.emit('keyClicked', letter);
+		var model = this.props.data;
+		this.props.ee.emit('keyClicked', model, this.props.ee, letter);
 	},
 	keys:function () {
 		var isGuessed = this.props.data.keysGuessed;
@@ -25,7 +26,7 @@ module.exports = React.createClass({
 					return (<button id={l} disabled>{l}</button>)
 				}
 			}.bind(this));
-		console.log(buttons)
+		// console.log(buttons)
 		return(buttons)
 	},
 	render: function () {
