@@ -18,12 +18,47 @@ var setgetgo = "http://randomword.setgetgo.com/get.php"
 function start (model, ee) {
 	render.render (model, ee)
 }
+
+function get (url) {
+	return new Promise (function (resolve, reject){
+		var xhr = new XMLHttpRequest();
+			xhr.addEventListener('load', function(data){
+				resolve(data.currentTarget.response)
+			});
+			xhr.open('GET', url);
+			xhr.send();
+	});
+}
+function doRequest (url) {
+	get(url)
+		.then(function(data){
+			//then do stuff when data is back
+			model.word = data;
+		}).then (function(){
+			//then render game
+			render.render (model, ee)
+		});
+}
+
+
+
 function renderFactory( cb ) {
-	return function() {
-		//use the apply method to pass the arguments from my emmitter 
-		//on my cb function
-			//rememeber this: this.props.ee.emit('keyClicked', letter);
-		cb.apply( null, arguments );
+		return function() {
+		//defines oncall back 
+		var onCb;
+		//if it's t
+		if ( cb ) {
+			onCb = cb.apply( null, arguments );
+		}
+
+		if ( onCb.then ) {
+			onCb.then(function() {
+				render();
+			});
+		}
+		else {
+			render();
+		}
 	}
 }
 //wrote a seperate function for updating my model
@@ -44,34 +79,13 @@ render.renderHome (model, ee)
 //and pass in my new function as an argument
 ee.on('keyClicked', renderFactory( update))
 
+
 //this is ok for the first api call- but not very reusable
 //on start click
 ee.on('buttonClick', function (url) {
 	//make call 
-	function get (url) {
-		return new Promise (function (resolve, reject){
-			var xhr = new XMLHttpRequest();
-				xhr.addEventListener('load', function(data){
-					resolve(data.currentTarget.response)
-				});
-				xhr.open('GET', url);
-				xhr.send();
-		});
-	}
-	function doRequest (url) {
-		get(url)
-			.then(function(data){
-				//then do stuff when data is back
-				model.word = data;
-			}).then (function(){
-				//then render game
-				render.render (model, ee)
-			});
-	}
 	doRequest (url) 
-
 });
-
 
 ///////////////Here I'm calling my factory function and passing in a ser
 
@@ -86,28 +100,28 @@ ee.on('buttonClick', function (url) {
 
 
 //make api call- generic functions
-function GET (url) {
-	return new Promise (function(reject, resolve){
-		xhr.addEventListener('load', function(e){
-			var data = JSON.parse( e.currentTarget.response );
-			resolve(data)
-		});
-		xhr.addEventListener('fail', function(e){
-			reject( e );
-		});
-		xhr.open('GET', url);
-		xhr.send();
-	});
-}
-function doRequest (url) {
-	return new Promise (function (reject, resolve) {
-		GET( url )
-		.then(function(data){
-			console.log("Data",data)
-			resolve();	
-		});
-	});
-}
+// function GET (url) {
+// 	return new Promise (function(reject, resolve){
+// 		xhr.addEventListener('load', function(e){
+// 			var data = JSON.parse( e.currentTarget.response );
+// 			resolve(data)
+// 		});
+// 		xhr.addEventListener('fail', function(e){
+// 			reject( e );
+// 		});
+// 		xhr.open('GET', url);
+// 		xhr.send();
+// 	});
+// }
+// function doRequest (url) {
+// 	return new Promise (function (reject, resolve) {
+// 		GET( url )
+// 		.then(function(data){
+// 			console.log("Data",data)
+// 			resolve();	
+// 		});
+// 	});
+// }
 // dictionary/bread
 
 
