@@ -3,6 +3,7 @@ var KeyBoard = require('./reactComps/keyBoard');
 var Dashes = require('./reactComps/dashes');
 var HangMan = require('./reactComps/hangMan')
 var GameOver = require('./reactComps/gameOver')
+var Home = require('./reactComps/home')
 var ReactDOM = require('react-dom');
 
 module.exports = {
@@ -24,6 +25,12 @@ module.exports = {
 		ReactDOM.render(
 			<GameOver data={obj} ee={ee} />,
 			document.getElementById('gameOver')
+		);
+	},
+	renderHome:function (obj, ee) {
+		ReactDOM.render(
+			<Home data={obj} ee={ee} />,
+			document.getElementById('main')
 		);
 	}
 }
