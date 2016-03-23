@@ -4,16 +4,16 @@ var ReactDOM = require('react-dom');
 var Emitter = require('event-emitter');
 //create new ee object
 var ee = Emitter({});
-var KeyBoard = require('./keyBoard');
-var Dashes = require('./dashes');
-var HangMan = require('./hangMan')
+var KeyBoard = require('./reactComps/keyBoard');
+var Dashes = require('./reactComps/dashes');
+var HangMan = require('./reactComps/hangMan')
 var model = {
 	word: "test",
 	numGuesses: 7,
 	keysGuessed: {},
 	rightGuesses: 0
 }
-//functions
+//functionsgamrhang
 var gameFunctions= require('./gameFunctions');
 var render = require('./renderFunctions')
 var makeCall = require('./makeCall')
@@ -62,9 +62,7 @@ function renderFactory( cb ) {
 	}
 }
 
-ee.on('keyClicked', renderFactory(updateClicked));
-
-function updateClicked (letter) {
+ee.on('keyClicked', function (letter) {
 	gameFunctions.check (model, letter)
 	if (model.numGuesses === 0 || model.rightGuesses === model.word.length){
 		console.log("OVER")
@@ -73,7 +71,7 @@ function updateClicked (letter) {
 	else {
 		render.render (model, ee)
 	}
-}
+});
 
 
 

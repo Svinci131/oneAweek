@@ -1,9 +1,9 @@
 var React = require('react');
+var KeyBoard = require('./reactComps/keyBoard');
+var Dashes = require('./reactComps/dashes');
+var HangMan = require('./reactComps/hangMan')
+var GameOver = require('./reactComps/gameOver')
 var ReactDOM = require('react-dom');
-var KeyBoard = require('./keyboard')
-var Dashes = require('./dashes')
-var HangMan = require('./hangMan')
-var GameOver = require('./gameOver')
 
 module.exports = {
 	render: function render(obj, ee) {
