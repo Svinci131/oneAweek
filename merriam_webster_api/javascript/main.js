@@ -44,7 +44,8 @@ render.renderHome (model, ee)
 //and pass in my new function as an argument
 ee.on('keyClicked', renderFactory( update))
 
-//this is ok for the first api call
+//this is ok for the first api call- but not very reusable
+//on start click
 ee.on('buttonClick', function (url) {
 	//make call 
 	function get (url) {
@@ -57,13 +58,17 @@ ee.on('buttonClick', function (url) {
 				xhr.send();
 		});
 	}
-	//then do stuff when data is back
-	get(url)
-	.then(function(data){
-		model.word = data;
-	}).then (function(){
-		console.log(model.word)
-	});
+	function doRequest (url) {
+		get(url)
+			.then(function(data){
+				//then do stuff when data is back
+				model.word = data;
+			}).then (function(){
+				//then render game
+				render.render (model, ee)
+			});
+	}
+	doRequest (url) 
 
 });
 
