@@ -1,18 +1,34 @@
 var React = require('react');
 
 module.exports = React.createClass({
+	winOrLose: function () {
+		var rightGuesses = this.props.data.rightGuesses; 
+		console.log("test2")
+		if (rightGuesses === this.props.data.word.length) {
+			
+			return (<div className="win-wrapper">
+						<p className="win">You Win</p>
+					</div>)
+		}
+		else {
+			return (
+		           	<div className="gallows">
+						{this.drawGuy()}
+					</div>
+					)
+		}
+	}, 
 	drawGuy: function () {
 		var remaining = this.props.data.numGuesses; 
 		var bodyEquals = ["rope","head", "torso", "arm-right", "arm", "leg-right", "leg"]
 		var wrongGuesses = 7-remaining;
 		var arr = bodyEquals.map(function(part, i){
-			console.log("xqlrfd")
+			// console.log("xqlrfd")
 			var cLass = "guy "+part
 			var style= {border: "1px solid black"}
 			if (remaining === 0) {
 				style= {border: "1px solid red"}
 			}
-			console.log("qlrfd")
 			if (i <= wrongGuesses) {
 				return (<div style={style} className={cLass}></div>)
 			}
@@ -24,10 +40,7 @@ module.exports = React.createClass({
 		console.log("1")
 		return (
 			<div className="hang">
-           		 <div className="gallows">
-			
-				{this.drawGuy()}
-				</div>
+           		{this.winOrLose()}
 			</div>)
 	}
 });
