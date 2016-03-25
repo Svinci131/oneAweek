@@ -4,8 +4,7 @@ var Emitter = require('event-emitter');
 var ee = Emitter({});
 var model = require('./model');
 var render = require('./renderFunctions');
-var xhr = new XMLHttpRequest();
-var GET = require('./gameFunctions/get');
+var getWord = require('./gameFunctions/getWord');
 var check = require('./gameFunctions/check');
 
 function renderFactory( cb ) {
@@ -14,6 +13,7 @@ function renderFactory( cb ) {
 		var onCb;
 		if ( cb ) {
 			onCb = cb.apply( null, arguments );
+			console.log("here", onCb)
 		}
 
 		if ( onCb.then ) {
@@ -26,52 +26,6 @@ function renderFactory( cb ) {
 		}
 		
 	}
-}
-
-// function GET (url) {
-// 	return new Promise (function (resolve, reject){
-// 		var xhr = new XMLHttpRequest();
-// 			xhr.addEventListener('load', function(data){
-// 				resolve(data.currentTarget.response)
-// 			});
-// 			xhr.open('GET', url);
-// 			xhr.send();
-// 	});
-// }
-//set up functions
-function getWord (url, cb) {
-	return new Promise (function (reject, resolve) {
-		GET(url)
-			.then(function(data){
-				console.log("broke out")
-				model.word = data;
-				getDefinition('dictionary/bread');
-			}).then (function(){
-				console.log("4")
-				render.render (model, ee);
-				resolve();
-			});
-	});
-}
-function getDefinition (url) {
-	return new Promise (function (resolve, reject) {
-		GET(url)
-			.then(function(data){
-				data = JSON.parse( data );
-				var arr  = data.entry_list.entry
-				var def  = {};
-				var newObj = Object.keys(arr).map(function(num, i){
-					var arrObj = arr[num].def[0].dt[0];
-					if (typeof arrObj === "object") {
-						arrObj = arrObj._
-					}
-					def[num] = arrObj; 
-				})
-				model.def = def;
-				console.log("here", model)
-				resolve();
-			 });
-	});
 }
 //initial start button
 render.renderHome (model, ee)
