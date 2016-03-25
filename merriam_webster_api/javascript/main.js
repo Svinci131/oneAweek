@@ -93,7 +93,8 @@ function getDefinition (url) {
 					def[num] = arrObj; 
 					// console.log("here", arrObj, num)
 				})
-				console.log("here", def)
+				model.def = def;
+				console.log("here", model)
 				resolve();
 			});
 	});
