@@ -7,7 +7,7 @@ var Home = require('./reactComps/home')
 var ReactDOM = require('react-dom');
 
 module.exports = {
-	render: function render(obj, ee) {
+	render: function (obj, ee) {
 		ReactDOM.render(
 			<KeyBoard data={obj} ee={ee} />,
 			document.getElementById('keyBoard')

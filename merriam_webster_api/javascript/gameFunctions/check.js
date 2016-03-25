@@ -1,4 +1,5 @@
 module.exports = function (obj, l) {
+	
 	var word = obj.word;
 	var isRight = false; 
 	l = l.toLowerCase()
