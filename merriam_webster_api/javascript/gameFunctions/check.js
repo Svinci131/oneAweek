@@ -3,7 +3,6 @@ var model = require('../model');
 
 module.exports = function (obj, ee, letter) {
 	return new Promise (function (resolve, reject) {
-		console.log("BR")
 		var word = obj.word;
 		var isRight = false; 
 		var l = letter.toLowerCase()

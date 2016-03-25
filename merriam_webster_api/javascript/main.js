@@ -4,7 +4,6 @@ var Emitter = require('event-emitter');
 var ee = Emitter({});
 var model = require('./model');
 var render = require('./renderFunctions');
-var makeCall = require('./makeCall');
 var xhr = new XMLHttpRequest();
 var check = require('./gameFunctions/check');
 
@@ -45,7 +44,8 @@ function getWord (url, cb) {
 	return new Promise (function (reject, resolve) {
 		GET(url)
 			.then(function(data){
-				cb(model, data, getDefinition('dictionary/bread'))
+				model.word = data;
+				getDefinition('dictionary/bread');
 			}).then (function(){
 				console.log("4")
 				render.render (model, ee);
@@ -53,7 +53,6 @@ function getWord (url, cb) {
 			});
 	});
 }
-
 function getDefinition (url) {
 	return new Promise (function (resolve, reject) {
 		GET(url)
