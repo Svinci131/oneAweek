@@ -20,7 +20,6 @@ module.exports = function (obj, ee, letter) {
 		  	else {
 		  		obj.keysGuessed[l]= true;
 		  	} 
-
-		render.render (model, ee)	
+		resolve();
 	});
 }

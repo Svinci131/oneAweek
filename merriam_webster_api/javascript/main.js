@@ -9,27 +9,24 @@ var check = require('./gameFunctions/check');
 
 function renderFactory( cb ) {
 	return function() {
-		var onCb; 
+		// cb.apply( null, arguments );
+		var onCb;
+		if ( cb ) {
+			onCb = cb.apply( null, arguments );
+		}
 
-		// if (cb) {
-			cb.apply( null, arguments );
-		// 	onCb = cb.apply( null, arguments );
-		// 	console.log(onCb)
-		// 	console.log("after", onCb)
-		// }
-		// if ( onCb.then ) {
-		// 	onCb.then(function() {
-		// 		render.renderHome (model, ee)
-		// 	});
-		// }
-		// else {
-		// 	render.renderHome (model, ee)
-		// } 
-		// console.log("after", arguments, cb)
-
+		if ( onCb.then ) {
+			onCb.then(function() {
+				render.render (model, ee)
+			});
+		}
+		else {
+			render.render (model, ee)
+		}
 		
 	}
 }
+
 function GET (url) {
 	return new Promise (function (resolve, reject){
 		var xhr = new XMLHttpRequest();
@@ -40,6 +37,7 @@ function GET (url) {
 			xhr.send();
 	});
 }
+//set up functions
 function getWord (url, cb) {
 	return new Promise (function (reject, resolve) {
 		GET(url)
@@ -73,12 +71,8 @@ function getDefinition (url) {
 			 });
 	});
 }
-
-
-
 //initial start button
 render.renderHome (model, ee)
-
 ee.on('keyClicked', renderFactory(check))
 ee.on('buttonClick', renderFactory(getWord)) 
 
