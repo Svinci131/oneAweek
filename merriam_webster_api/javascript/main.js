@@ -9,11 +9,6 @@ var xhr = new XMLHttpRequest();
 var setgetgo = "http://randomword.setgetgo.com/get.php";
 var update = require('./gameFunctions/update.js')
 
-//START
-// function start (model, ee) {
-// 	render.render (model, ee)
-// }
-
 function renderFactory( cb ) {
 	return function() {
 		var onCb; 
@@ -48,28 +43,18 @@ function GET (url) {
 			xhr.send();
 	});
 }
-function doRequest (url, cb) {
+function getWord (url, cb) {
 	return new Promise (function (reject, resolve) {
 		GET(url)
 			.then(function(data){
 				//then do stuff when data is back
-				
 				cb(model, data, getDefinition('dictionary/bread'))
+			}).then (function(){
+				render.render (model, ee);
 				resolve();
-				
 			});
 	});
 }
-
-//make dorequest setgetgo 
-//which takes in set get go 
-//which updates the model.word and prints out the word and the string and calls do request
-// which prints out the word and the string which calls doreq 
-
-//get dorequest(getDef)
-//which prints out foo
-
-
 
 function getDefinition (url) {
 	return new Promise (function (resolve, reject) {
@@ -95,13 +80,11 @@ function getDefinition (url) {
 
 
 //initial set up 
-render.render (model, ee)
+
 render.renderHome (model, ee)
 
 ee.on('keyClicked', renderFactory( update))
-
-//replace 
-ee.on('buttonClick', renderFactory(doRequest)) 
+ee.on('buttonClick', renderFactory(getWord)) 
 
 
 
