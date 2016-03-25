@@ -21,12 +21,6 @@ module.exports = {
 			document.getElementById('hangMan')
 		);
 	},
-	renderGameOver: function (obj, ee, status) {
-		ReactDOM.render(
-			<GameOver data={obj} status={status} ee={ee} />,
-			document.getElementById('gameOver')
-		);
-	},
 	renderHome:function (obj, ee) {
 		ReactDOM.render(
 			<Home data={obj} ee={ee} />,

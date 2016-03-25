@@ -18,6 +18,7 @@ module.exports = React.createClass({
 	render:function(){
 		var word = this.props.data.word;
 		return (<div>
+			<h1>HangMan</h1>
 			<p>{this.dashes()}</p>
 			</div>)
 	}

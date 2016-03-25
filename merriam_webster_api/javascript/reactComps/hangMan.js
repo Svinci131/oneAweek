@@ -23,10 +23,10 @@ module.exports = React.createClass({
 		var bodyEquals = ["rope","head", "torso", "arm-right", "arm", "leg-right", "leg"]
 		var wrongGuesses = 7-remaining;
 		var arr = bodyEquals.map(function(part, i){
-			// console.log("xqlrfd")
 			var cLass = "guy "+part
 			var style= {border: "1px solid black"}
-			if (remaining === 0) {
+			if (remaining === 1) {
+				console.log("bar")
 				style= {border: "1px solid red"}
 			}
 			if (i <= wrongGuesses) {
