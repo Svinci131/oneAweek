@@ -51,7 +51,6 @@ function getWord (url, cb) {
 			}).then (function(){
 				console.log("4")
 				render.render (model, ee);
-				render.renderKeyBoard (model, ee);
 				resolve();
 			});
 	});
