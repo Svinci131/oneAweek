@@ -49,18 +49,16 @@ function GET (url) {
 	});
 }
 function doRequest (url, cb) {
-	// return new Promise (function (reject, resolve) {
+	return new Promise (function (reject, resolve) {
 		GET(url)
 			.then(function(data){
 				//then do stuff when data is back
 				
 				cb(model, data, getDefinition('dictionary/bread'))
+				resolve();
 				
-				
-			}).then(function(){
-				// console.log("here", model.word)
-			})
-	// });
+			});
+	});
 }
 
 //make dorequest setgetgo 
@@ -77,31 +75,21 @@ function getDefinition (url) {
 	return new Promise (function (resolve, reject) {
 		GET(url)
 			.then(function(data){
-				// var def  = {};
 				data = JSON.parse( data );
 				var arr  = data.entry_list.entry
-				model.def = arr;
-				
-
-				// console.log("gD", typeof data, data)
-			}).then (function(){
-				var arr = model.def;
 				var def  = {};
 				var newObj = Object.keys(arr).map(function(num, i){
-
 					var arrObj = arr[num].def[0].dt[0];
+					if (typeof arrObj === "object") {
+						arrObj = arrObj._
+					}
 					def[num] = arrObj; 
-					// console.log("here", arrObj, num)
 				})
 				model.def = def;
 				console.log("here", model)
 				resolve();
-			});
+			 });
 	});
-
-	// return new Promise (function (resolve, reject) {
-	// 	resolve();
-	// }) 
 }
 
 
