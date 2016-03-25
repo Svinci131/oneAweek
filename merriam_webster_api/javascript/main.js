@@ -5,6 +5,7 @@ var ee = Emitter({});
 var model = require('./model');
 var render = require('./renderFunctions');
 var xhr = new XMLHttpRequest();
+var GET = require('./gameFunctions/get');
 var check = require('./gameFunctions/check');
 
 function renderFactory( cb ) {
@@ -27,21 +28,22 @@ function renderFactory( cb ) {
 	}
 }
 
-function GET (url) {
-	return new Promise (function (resolve, reject){
-		var xhr = new XMLHttpRequest();
-			xhr.addEventListener('load', function(data){
-				resolve(data.currentTarget.response)
-			});
-			xhr.open('GET', url);
-			xhr.send();
-	});
-}
+// function GET (url) {
+// 	return new Promise (function (resolve, reject){
+// 		var xhr = new XMLHttpRequest();
+// 			xhr.addEventListener('load', function(data){
+// 				resolve(data.currentTarget.response)
+// 			});
+// 			xhr.open('GET', url);
+// 			xhr.send();
+// 	});
+// }
 //set up functions
 function getWord (url, cb) {
 	return new Promise (function (reject, resolve) {
 		GET(url)
 			.then(function(data){
+				console.log("broke out")
 				model.word = data;
 				getDefinition('dictionary/bread');
 			}).then (function(){
