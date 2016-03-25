@@ -2,7 +2,6 @@ var React = require('react');
 var KeyBoard = require('./reactComps/keyBoard');
 var Dashes = require('./reactComps/dashes');
 var HangMan = require('./reactComps/hangMan')
-var GameOver = require('./reactComps/gameOver')
 var Home = require('./reactComps/home')
 var ReactDOM = require('react-dom');
 

@@ -6,8 +6,7 @@ var model = require('./model');
 var render = require('./renderFunctions');
 var makeCall = require('./makeCall');
 var xhr = new XMLHttpRequest();
-var setgetgo = "http://randomword.setgetgo.com/get.php";
-var update = require('./gameFunctions/update.js')
+var check = require('./gameFunctions/check');
 
 function renderFactory( cb ) {
 	return function() {
@@ -32,7 +31,6 @@ function renderFactory( cb ) {
 		
 	}
 }
-
 function GET (url) {
 	return new Promise (function (resolve, reject){
 		var xhr = new XMLHttpRequest();
@@ -79,11 +77,10 @@ function getDefinition (url) {
 
 
 
-//initial set up 
-
+//initial start button
 render.renderHome (model, ee)
 
-ee.on('keyClicked', renderFactory( update))
+ee.on('keyClicked', renderFactory(check))
 ee.on('buttonClick', renderFactory(getWord)) 
 
 
