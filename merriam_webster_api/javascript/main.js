@@ -49,8 +49,9 @@ function getWord (url, cb) {
 			.then(function(data){
 				cb(model, data, getDefinition('dictionary/bread'))
 			}).then (function(){
-				console.log("3")
+				console.log("4")
 				render.render (model, ee);
+				render.renderKeyBoard (model, ee);
 				resolve();
 			});
 	});

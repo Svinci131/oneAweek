@@ -4,9 +4,7 @@ var model = require('../model');
 
 module.exports = function (obj, ee, letter) {
 	return new Promise (function (resolve, reject) {
-		
 		check (obj, letter)
-
 		if (model.numGuesses === 0) {
 		  	render.renderGameOver(model, ee, "lose");
 		}

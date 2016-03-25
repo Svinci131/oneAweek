@@ -20,10 +20,10 @@ module.exports = React.createClass({
 		var buttons = arr.map(function(l){ 
 				l = l.toLowerCase()
 				if (typeof isGuessed[l] === "undefined") {
-					return (<button id={l} onClick={this.addItem}>{l}</button>)
+					return (<button className='ui inverted grey button' id={l} onClick={this.addItem}>{l}</button>)
 				}
 				else {
-					return (<button id={l} disabled>{l}</button>)
+					return (<button id={l} className='ui inverted grey button' disabled>{l}</button>)
 				}
 			}.bind(this));
 		// console.log(buttons)
