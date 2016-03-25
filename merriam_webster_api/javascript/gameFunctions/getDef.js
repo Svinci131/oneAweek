@@ -1,6 +1,7 @@
+var GET = require('./get');
 var model = require('../model');
 
-function getDefinition (url) {
+module.exports = function (url) {
 	return new Promise (function (resolve, reject) {
 		GET(url)
 			.then(function(data){
