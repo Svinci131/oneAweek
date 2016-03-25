@@ -73,12 +73,30 @@ function doRequest (url, cb) {
 
 
 
-
 function getDefinition (url) {
-	GET(url)
-		.then(function(data){
-			console.log("gD", data)
-		});
+	return new Promise (function (resolve, reject) {
+		GET(url)
+			.then(function(data){
+				// var def  = {};
+				data = JSON.parse( data );
+				var arr  = data.entry_list.entry
+				model.def = arr;
+				
+
+				// console.log("gD", typeof data, data)
+			}).then (function(){
+				var arr = model.def;
+				var def  = {};
+				var newObj = Object.keys(arr).map(function(num, i){
+
+					var arrObj = arr[num].def[0].dt[0];
+					def[num] = arrObj; 
+					// console.log("here", arrObj, num)
+				})
+				console.log("here", def)
+				resolve();
+			});
+	});
 
 	// return new Promise (function (resolve, reject) {
 	// 	resolve();
