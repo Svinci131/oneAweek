@@ -1,12 +1,10 @@
 //var mW = http://www.dictionaryapi.com/api/v1/references/sd2/xml/test?key=5590eec7-58b6-40f8-b912-60c2e61c7f6a
-module.exports = function () {
-	// var setgetgo = "http://randomword.setgetgo.com/get.php"
-	// var xhr = new XMLHttpRequest();
-	// 	xhr.addEventListener('load', function(data){
-	// 		console.log("here", data.currentTarget.response);
-	// 	})
-	// 	xhr.open('GET', setgetgo);
-	// 	xhr.send();
+// var setgetgo = "http://randomword.setgetgo.com/get.php"
+module.exports = {
+	setWord: function (obj, str, cb) {
+		console.log("HERE", obj.word, str)
+		obj.word = str;
+	}
 }
 
 

@@ -14,69 +14,72 @@ var update = require('./gameFunctions/update.js')
 // 	render.render (model, ee)
 // }
 
-// function GET (url) {
-// 	return new Promise (function (resolve, reject){
-// 		var xhr = new XMLHttpRequest();
-// 			xhr.addEventListener('load', function(data){
-// 				resolve(data.currentTarget.response)
-// 			});
-// 			xhr.open('GET', url);
-// 			xhr.send();
-// 	});
-// }
-// function doRequest (url) {
-// 	return new Promise (function (reject, resolve) {
-// 		GET(url)
-// 			.then(function(data){
-// 				//then do stuff when data is back
-// 				model.word = data;
-// 				console.log("here", model.word)
-				
-// 			}).then(function(){
-// 				resolve();	
-// 			})
-// 	});
-// }
-
-// function getDefinition (url) {
-// 	return new Promise (function (resolve, reject) {
-// 		resolve();
-// 	}) 
-// }
-
 function renderFactory( cb ) {
 	return function() {
 		var onCb; 
 
-		if (cb) {
-			console.log("before", onCb)
-			onCb = cb.apply( null, arguments );
-			console.log(onCb)
-			console.log("after", onCb)
-		}
-		if ( onCb.then ) {
-			onCb.then(function() {
-				render.renderHome (model, ee)
-			});
-		}
-		else {
-			render.renderHome (model, ee)
-		} 
+		// if (cb) {
+			cb.apply( null, arguments );
+		// 	onCb = cb.apply( null, arguments );
+		// 	console.log(onCb)
+		// 	console.log("after", onCb)
+		// }
+		// if ( onCb.then ) {
+		// 	onCb.then(function() {
+		// 		render.renderHome (model, ee)
+		// 	});
+		// }
+		// else {
+		// 	render.renderHome (model, ee)
+		// } 
 		// console.log("after", arguments, cb)
 
 		
 	}
 }
-//wrote a seperate function for updating my model
+
+function GET (url) {
+	return new Promise (function (resolve, reject){
+		var xhr = new XMLHttpRequest();
+			xhr.addEventListener('load', function(data){
+				resolve(data.currentTarget.response)
+			});
+			xhr.open('GET', url);
+			xhr.send();
+	});
+}
+function doRequest (url, cb) {
+	// return new Promise (function (reject, resolve) {
+		GET(url)
+			.then(function(data){
+				//then do stuff when data is back
+				// console.log("test", data)
+				cb(model, data)
+				//model.word = data;
+				
+			}).then(function(){
+				console.log("here", model.word)
+			})
+	// });
+}
+
+function getDefinition (url) {
+	console.log(model)
+	// return new Promise (function (resolve, reject) {
+	// 	resolve();
+	// }) 
+}
+
+
 
 //initial set up 
 render.render (model, ee)
-// render.renderHome (model, ee)
+render.renderHome (model, ee)
 
 ee.on('keyClicked', renderFactory( update))
 
 //replace 
-// ee.on('buttonClick', renderFactory(doRequest)) 
+ee.on('buttonClick', renderFactory(doRequest)) 
 
 
 

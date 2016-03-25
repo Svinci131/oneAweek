@@ -1,9 +1,12 @@
 var React = require('react');
-var setgetgo = "http://randomword.setgetgo.com/get.php"
+var setgetgo = "http://randomword.setgetgo.com/get.php";
+var apiFuctions = require("../makeCall");
+var setWord = apiFuctions.setWord;
 
 module.exports = React.createClass({
 	showDef:function () { 
-		this.props.ee.emit("buttonClick", setgetgo);
+		// setWord(this.props.data)
+		this.props.ee.emit("buttonClick", setgetgo, setWord);
 	},
 	render: function () {
 		return (<div>
