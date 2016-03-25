@@ -6,7 +6,7 @@ module.exports = React.createClass({
 	},
 	render: function () {
 		return (<div>
-			<p><i>{this.props.data.word}</i></p>
+			<p><i>{this.props.status}</i></p>
 			</div>)
 	}
 });

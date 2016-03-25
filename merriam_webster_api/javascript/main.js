@@ -47,9 +47,9 @@ function getWord (url, cb) {
 	return new Promise (function (reject, resolve) {
 		GET(url)
 			.then(function(data){
-				//then do stuff when data is back
 				cb(model, data, getDefinition('dictionary/bread'))
 			}).then (function(){
+				console.log("3")
 				render.render (model, ee);
 				resolve();
 			});

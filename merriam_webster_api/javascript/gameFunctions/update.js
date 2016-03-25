@@ -1,15 +1,19 @@
 var check = require('./check');
 var render = require('../renderFunctions');
+var model = require('../model');
 
-module.exports = function (model, ee, letter) {
+module.exports = function (obj, ee, letter) {
 	return new Promise (function (resolve, reject) {
-		console.log("36")
-		check (model, letter)
-		if (model.numGuesses === 0 || model.rightGuesses === model.word.length){
-		  	render.renderHome(model, ee);
+		
+		check (obj, letter)
+
+		if (model.numGuesses === 0) {
+		  	render.renderGameOver(model, ee, "lose");
 		}
-		else {
-			render.render (model, ee)
+		else if (model.rightGuesses === model.word.length){
+			render.renderGameOver(model, ee, "win");
+
 		}
+		render.render (model, ee)
 	});
 }

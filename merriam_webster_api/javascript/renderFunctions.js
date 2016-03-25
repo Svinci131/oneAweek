@@ -21,9 +21,9 @@ module.exports = {
 			document.getElementById('hangMan')
 		);
 	},
-	renderGameOver: function (obj, ee) {
+	renderGameOver: function (obj, ee, status) {
 		ReactDOM.render(
-			<GameOver data={obj} ee={ee} />,
+			<GameOver data={obj} status={status} ee={ee} />,
 			document.getElementById('gameOver')
 		);
 	},
