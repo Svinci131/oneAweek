@@ -6,14 +6,14 @@ module.exports = React.createClass({
 		var bodyEquals = ["rope","head", "torso", "arm-right", "arm", "leg-right", "leg"]
 		var wrongGuesses = 7-remaining;
 		var arr = bodyEquals.map(function(part, i){
-			console.log(part, i)
+			console.log("rfd")
+			var cLass = "guy "+part
+			var style= {border: "1px solid red"}
 			if (i <= wrongGuesses) {
-				var style = "guy "+part
-				return (<div className={style}></div>)
+				return (<div style={style} className={cLass}></div>)
 			}
 			
 		});
-		
 		return (arr)
 	}, 
 	render: function () {
