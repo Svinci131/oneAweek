@@ -53,18 +53,33 @@ function doRequest (url, cb) {
 		GET(url)
 			.then(function(data){
 				//then do stuff when data is back
-				// console.log("test", data)
-				cb(model, data)
-				//model.word = data;
+				
+				cb(model, data, getDefinition('dictionary/bread'))
+				
 				
 			}).then(function(){
-				console.log("here", model.word)
+				// console.log("here", model.word)
 			})
 	// });
 }
 
+//make dorequest setgetgo 
+//which takes in set get go 
+//which updates the model.word and prints out the word and the string and calls do request
+// which prints out the word and the string which calls doreq 
+
+//get dorequest(getDef)
+//which prints out foo
+
+
+
+
 function getDefinition (url) {
-	console.log(model)
+	GET(url)
+		.then(function(data){
+			console.log("gD", data)
+		});
+
 	// return new Promise (function (resolve, reject) {
 	// 	resolve();
 	// }) 
