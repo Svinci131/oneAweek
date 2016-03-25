@@ -10,7 +10,7 @@ module.exports = React.createClass({
 	},
 	render: function () {
 		return (<div>
-					<button onClick={this.showDef}>Start New Game</button>
+					<button className="ui primary button" onClick={this.showDef}>Start New Game</button>
 				</div>)
 	}
 });
