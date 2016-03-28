@@ -37,12 +37,10 @@ module.exports = React.createClass({
 					return (<button id={l} className='ui inverted grey button' disabled>{l}</button>)
 				}
 			}.bind(this));
-		// console.log(buttons)
 		return(buttons)
 	},
 	render: function () {
 		return (<div>
-			<p>4</p>
 			{this.isOver()}
 			</div>)
 	}
