@@ -1,9 +1,11 @@
-module.exports = {
+var model = require('../model');
+
+module.exports = function () {
 	//reset model
-	model.word = "test"
-	model.numGuesses = 7
-	model.keysGuessed = {}
-	model.rightGuesses = 0
+	model.word = "test";
+	model.numGuesses = 7;
+	model.keysGuessed = {};
+	model.rightGuesses = 0;
 	//remove key board 
 	//dashes 
 }

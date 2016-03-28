@@ -24,7 +24,10 @@ module.exports = React.createClass({
 		var arr = bodyEquals.map(function(part, i){
 			var cLass = "guy "+part
 			var style= {border: "1px solid black"}
-			if (remaining === 1) {
+			if (part === "rope") {
+				style= {border: "5px solid black"}
+			}
+			if (remaining === 1 && part !== "rope") {
 				console.log("bar")
 				style= {border: "1px solid red"}
 			}

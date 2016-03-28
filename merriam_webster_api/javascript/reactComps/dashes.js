@@ -1,5 +1,6 @@
 var React = require('react');
 
+
 module.exports = React.createClass({
 	dashes:function () {
 		var remaining = this.props.data.numGuesses; 
@@ -25,7 +26,7 @@ module.exports = React.createClass({
 	render:function(){
 		var word = this.props.data.word;
 		return (<div>
-			<h1>HangMan1</h1>
+			<h1>HangMan</h1>
 			<p>{this.dashes()}</p>
 			</div>)
 	}
