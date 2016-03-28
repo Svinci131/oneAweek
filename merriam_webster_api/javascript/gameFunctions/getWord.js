@@ -5,7 +5,7 @@ module.exports = function (url, cb) {
 	return new Promise (function (resolve, reject) {
 		GET(url)
 			.then(function(data){
-				console.log("almost done!!")
+				console.log("almost cxzrtetredone!!")
 				model.word = data;
 				cb('dictionary/bread');
 				resolve();

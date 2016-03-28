@@ -2,6 +2,8 @@ var render = require('../renderFunctions');
 var model = require('../model');
 
 module.exports = function (obj, ee, letter) {
+	//I moved my update function to a new page
+	//now it returns a promise
 	return new Promise (function (resolve, reject) {
 		var word = obj.word;
 		var isRight = false; 
@@ -20,6 +22,12 @@ module.exports = function (obj, ee, letter) {
 		  	else {
 		  		obj.keysGuessed[l]= true;
 		  	} 
+		//here I'm resolving after it's done everything it needs to
 		resolve();
 	});
 }
+
+
+//By turn returning promise objects instead of function, 
+	//I can chain them in my factory function. 
+	//Then I can do things like render after each event

@@ -2,9 +2,9 @@ var React = require('react');
 
 module.exports = React.createClass({
 	winOrLose: function () {
+		// var rightGuesses = 7-remaining;
 		var rightGuesses = this.props.data.rightGuesses; 
 		if (rightGuesses === this.props.data.word.length) {
-			
 			return (<div className="win-wrapper">
 						<p className="win">You Win</p>
 					</div>)

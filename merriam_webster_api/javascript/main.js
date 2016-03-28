@@ -9,23 +9,22 @@ var check = require('./gameFunctions/check');
 
 function renderFactory( cb ) {
 	return function() {
-		// cb.apply( null, arguments );
 		var onCb;
 		if ( cb ) {
+			//like we did before except we set onCB to be 
+			//the promise object our function returns 
 			onCb = cb.apply( null, arguments );
-			console.log("here", onCb)
 		}
-
-		if ( onCb.then ) {
-			onCb.then(function() {
-				render.render (model, ee)
-			});
-		}
-		else {
+		//rerender our page
+		onCb.then(function() {
 			render.render (model, ee)
-		}
-		
+		});
 	}
+}
+
+function gameOver () {
+	//dont show key board
+	
 }
 //initial start button
 render.renderHome (model, ee)
