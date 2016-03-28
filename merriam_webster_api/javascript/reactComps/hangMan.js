@@ -2,7 +2,6 @@ var React = require('react');
 
 module.exports = React.createClass({
 	winOrLose: function () {
-		// var rightGuesses = 7-remaining;
 		var rightGuesses = this.props.data.rightGuesses; 
 		if (rightGuesses === this.props.data.word.length) {
 			return (<div className="win-wrapper">
@@ -11,10 +10,9 @@ module.exports = React.createClass({
 		}
 		else {
 			return (
-		           	<div className="gallows">
-						{this.drawGuy()}
-					</div>
-					)
+	           	<div className="gallows">
+					{this.drawGuy()}
+				</div>);
 		}
 	}, 
 	drawGuy: function () {
@@ -24,10 +22,8 @@ module.exports = React.createClass({
 		var arr = bodyEquals.map(function(part, i){
 			var cLass = "guy "+part
 			var style= {border: "1px solid black"}
-			if (part === "rope") {
-				style= {border: "5px solid black"}
-			}
-			if (remaining === 1 && part !== "rope") {
+	
+			if (remaining === 1) {
 				console.log("bar")
 				style= {border: "1px solid red"}
 			}

@@ -15,16 +15,6 @@ module.exports = React.createClass({
 		var model = this.props.data;
 		this.props.ee.emit('keyClicked', model, this.props.ee, letter);
 	},
-	isOver: function () {
-		var remaining = this.props.data.numGuesses; 
-		var rightGuesses = this.props.data.rightGuesses; 
-		if (rightGuesses === this.props.data.word.length || remaining === 1) {
-			return (<Definitions data={this.props.data.def} />)
-		}
-		else {
-			return this.keys()
-		}
-	},
 	keys:function () {
 		var isGuessed = this.props.data.keysGuessed;
 		var arr = this.letters()
@@ -41,7 +31,7 @@ module.exports = React.createClass({
 	},
 	render: function () {
 		return (<div>
-			{this.isOver()}
+			{this.keys()}
 			</div>)
 	}
 	

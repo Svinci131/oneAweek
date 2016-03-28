@@ -7,8 +7,8 @@ module.exports = React.createClass({
 		this.props.ee.emit("buttonClick", setgetgo, getDefinition);
 	},
 	render: function () {
-		return (<div>
-					<button className="ui primary button" onClick={this.showDef}>New Game</button>
-				</div>)
+		return (
+			<button className={this.props.cLass} onClick={this.showDef}>New Game</button>
+		)
 	}
 });

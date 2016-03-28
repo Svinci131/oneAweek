@@ -17,7 +17,7 @@ function renderFactory( cb ) {
 		}
 		//rerender our page
 		onCb.then(function() {
-			render.render (model, ee)
+			render.renderBoard (model, ee)
 		});
 	}
 }
