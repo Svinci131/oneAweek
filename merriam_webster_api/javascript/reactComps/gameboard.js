@@ -40,7 +40,7 @@ module.exports = React.createClass({
 				<div className="container bottom">
 		            <div className="hang spacer">
 		            </div>
-		            <p>7</p>
+		            <p>11</p>
 		            	{this.winOrLose()}
 		  			
 		        </div>

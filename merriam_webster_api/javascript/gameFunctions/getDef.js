@@ -1,13 +1,12 @@
 var GET = require('./get');
 var model = require('../model');
+var getWord = require("./getWord")
 
 module.exports = function (url) {
 	return new Promise (function (resolve, reject) {
 		GET(url)
 			.then(function(data){
-
 				data = JSON.parse( data );
-
 				var arr  = data.entry_list.entry
 				var def  = {};
 				if (arr) {
@@ -18,14 +17,22 @@ module.exports = function (url) {
 					}
 					def[num] = arrObj; 
 					})
+					model.def = def;
+					
+					
 				}
 				else {
 					def[0] = "no definitions available"
+					model.def = def;
+
 				}
-				
-				model.def = def;
 				console.log("here", model)
 				resolve();
+				// else {
+				// 	def[0] = "no definitions available"
+				// }
+				
+				
 			 });
 	});
 }
