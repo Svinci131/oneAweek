@@ -1,4 +1,5 @@
 var React = require('react');
+var Definitions = require('./definitions');
 
 module.exports = React.createClass({
 	letters: function  () {
@@ -18,7 +19,7 @@ module.exports = React.createClass({
 		var remaining = this.props.data.numGuesses; 
 		var rightGuesses = this.props.data.rightGuesses; 
 		if (rightGuesses === this.props.data.word.length || remaining === 1) {
-			return "WIN"
+			return (<Definitions data={this.props.data.def} />)
 		}
 		else {
 			return this.keys()
@@ -41,6 +42,7 @@ module.exports = React.createClass({
 	},
 	render: function () {
 		return (<div>
+			<p>4</p>
 			{this.isOver()}
 			</div>)
 	}
