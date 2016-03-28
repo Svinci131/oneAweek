@@ -1,12 +1,12 @@
 var React = require('react');
+var KeyBoard = require('./reactComps/keyBoard');
+var Dashes = require('./reactComps/dashes');
+var HangMan = require('./reactComps/hangMan')
+var Home = require('./reactComps/home')
 var ReactDOM = require('react-dom');
-var KeyBoard = require('./keyboard')
-var Dashes = require('./dashes')
-var HangMan = require('./hangMan')
-var GameOver = require('./gameOver')
 
 module.exports = {
-	render: function render(obj, ee) {
+	render: function (obj, ee) {
 		ReactDOM.render(
 			<KeyBoard data={obj} ee={ee} />,
 			document.getElementById('keyBoard')
@@ -20,10 +20,10 @@ module.exports = {
 			document.getElementById('hangMan')
 		);
 	},
-	renderGameOver: function (obj, ee) {
+	renderHome:function (obj, ee) {
 		ReactDOM.render(
-			<GameOver data={obj} ee={ee} />,
-			document.getElementById('gameOver')
+			<Home data={obj} ee={ee} />,
+			document.getElementById('main')
 		);
 	}
 }

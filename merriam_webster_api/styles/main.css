@@ -4,7 +4,14 @@ body {
 	background-color: #1b1c1d;
 	color:white;
 }
-
+/*you win*/
+.win {
+	color:black;
+	padding: 1em;
+}
+.win-wrapper {
+	height:150px;
+}
 /*little guy*/
 .rope {
 	height: 20px;
@@ -18,7 +25,7 @@ body {
     position: absolute;
     left: 97px;
     top: 20px;
-    visibility: hidden;
+/*    visibility: hidden;*/
     /* z-index: 0; */
 }
 .gallows {
@@ -47,7 +54,7 @@ body {
 	top:19px;
 	left:75px;
 	position: absolute;
-	visibility: hidden;
+	/*visibility: hidden;*/
 }
 
 .torso { 
@@ -55,14 +62,14 @@ body {
     top: 63px;
     left: 96px;
 	position: absolute;
-	visibility: hidden;
+/*	visibility: hidden;*/
 }
 .arm-right {
 	width:30px;
 	position: absolute;
 	top:80px;
 	left:67px;
-	visibility: hidden;
+/*	visibility: hidden;*/
 }
 
 .leg-right {
@@ -71,14 +78,14 @@ body {
 	top:110px;
 	left:74px;
 	transform: rotate(-60deg);
-	visibility: hidden;
+/*	visibility: hidden;*/
 }
 .arm {
 	width:30px;
 	position: absolute;
 	top:80px;
 	left:97px;
-	visibility: hidden;
+	/*visibility: hidden;*/
 } 
 .leg {
 	width:30px;
@@ -86,7 +93,7 @@ body {
 	top:108px;
 	left:89px;
 	transform: rotate(60deg);
-	visibility: hidden;
+/*	visibility: hidden;*/
 }
 .arm:nth-of-type(2) {
 	left:67px;
@@ -111,7 +118,7 @@ p.speech
     -webkit-box-shadow: 2px 2px 4px #888;
     -moz-box-shadow: 2px 2px 4px #888;
     box-shadow: 2px 2px 4px #888;
-    visibility: hidden;
+/*    visibility: hidden;*/
 }
 
 p.speech:before
