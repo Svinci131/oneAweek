@@ -4,6 +4,18 @@ body {
 	background-color: #1b1c1d;
 	color:white;
 }
+/*start button*/
+.start {
+/*	float:right!important;*/
+	display: block!important;
+    margin: 0 auto!important;
+    margin-top: 1em!important;
+}
+#main {
+	margin-top: 5em;
+}
+/*start button*/
+    
 /*you win*/
 .win {
 	color:black;
@@ -17,7 +29,7 @@ body {
 	height: 20px;
     border-right: 5px solid #1b1c1d;
     position: absolute;
-    left: 95px;
+    left: 100px;
 }
 .rope2 { 
 	height: 100px;
@@ -160,9 +172,12 @@ p.speech:after
 .container {
 	display: flex;
 }
+/*//one col*/
 .hang {
 	flex:1;
 }
+
+
 .game {
 	flex: 3;
     padding: 50px;

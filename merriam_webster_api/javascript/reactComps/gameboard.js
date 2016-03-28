@@ -14,7 +14,8 @@ module.exports = React.createClass({
 		if (rightGuesses !== this.props.data.word.length && remaining > 1) {
 			return (<div className="game">
 					<Dashes data={this.props.data} ee={this.props.ee}/>
-		            <KeyBoard data={this.props.data} ee={this.props.ee} /> 
+		            <KeyBoard data={this.props.data} ee={this.props.ee} />
+		            <Home cLass="ui primary button" data={this.props.data} ee={this.props.ee} /> 
 		            </div>
 		            )
 		}
@@ -26,6 +27,7 @@ module.exports = React.createClass({
 						<p className="word">{this.props.data.word}</p>
 					</div>
 					<Definitions data={this.props.data.def} />
+					<Home cLass="ui primary button" data={this.props.data} ee={this.props.ee} />
 				</div>)
 		}
 	}, 
@@ -38,9 +40,9 @@ module.exports = React.createClass({
 				<div className="container bottom">
 		            <div className="hang spacer">
 		            </div>
-		            <div className="game">
+		            <p>4</p>
 		            	{this.winOrLose()}
-		            </div>
+		  			
 		        </div>
 		    </div>
 		    )
