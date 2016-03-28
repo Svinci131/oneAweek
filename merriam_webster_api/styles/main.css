@@ -153,7 +153,6 @@ p.speech:after
 }
 /*dashes*/
 
-
 /*general-positioning/layout*/
 .top {
 	background-color: white;
@@ -190,7 +189,9 @@ p.speech:after
 /*	display: none;*/
 }
 .word {
-	margin-bottom: 30px;
+	font-size: 28px;
+	font-family: 'Open Sans Light 300 Italic', sans-serif;
+	padding-bottom: 30px;
 }
 .definition {
 	font-size: 15px;

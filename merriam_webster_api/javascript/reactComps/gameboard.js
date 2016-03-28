@@ -23,7 +23,7 @@ module.exports = React.createClass({
 				<div className="game">
 					<div>
 						<h1>HangMan</h1>
-						<p>{this.props.word}</p>
+						<p className="word">{this.props.data.word}</p>
 					</div>
 					<Definitions data={this.props.data.def} />
 				</div>)
