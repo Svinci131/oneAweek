@@ -2,6 +2,7 @@ var GET = require('./get');
 var resetModel = require('./reset');
 var model = require('../model');
 
+//calls resets object, updates word and calls get def
 module.exports = function (url, cb) {
 	return new Promise (function (resolve, reject) {
 		resetModel();

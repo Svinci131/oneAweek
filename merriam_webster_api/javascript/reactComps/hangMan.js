@@ -39,7 +39,6 @@ module.exports = React.createClass({
 		return (arr)
 	}, 
 	render: function () {
-		console.log("1")
 		return (
 			<div className="hang">
            		{this.winOrLose()}

@@ -6,6 +6,4 @@ module.exports = function () {
 	model.numGuesses = 7;
 	model.keysGuessed = {};
 	model.rightGuesses = 0;
-	//remove key board 
-	//dashes 
 }

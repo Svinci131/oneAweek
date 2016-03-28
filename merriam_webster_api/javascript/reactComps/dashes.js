@@ -1,6 +1,5 @@
 var React = require('react');
 
-
 module.exports = React.createClass({
 	dashes:function () {
 		var remaining = this.props.data.numGuesses; 

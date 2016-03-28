@@ -22,10 +22,6 @@ function renderFactory( cb ) {
 	}
 }
 
-function gameOver () {
-	//dont show key board
-	
-}
 //initial start button
 render.renderHome (model, ee)
 ee.on('keyClicked', renderFactory(check))
